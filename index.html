@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    
+    <nav>
+        <div class="logo">
+            <img src="img/logo.png">
+            <a href="#">AHAMAY</a>
+        </div>
+        <div class="nav-links">
+            <a class="selected" href="index.html">Home</a>
+            <a href="page-num-2.html">About</a>
+            <a href="#" class="button" id="home-login-button">Login</a>
+        </div>
+    </nav>
+
+    <div class="popup">
+        <div class="popup-content">
+            <img src="img/close.png" class="close">
+            <img src="img/logo.png">
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <a href="#" class="button">Login</a>
+            <h6>Don't have an account yet?</h6>
+            <a href="#" class="button" id="register-popup-button">Register here</a>
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById("home-login-button").addEventListener("click",function(){
+            document.querySelector(".popup").style.display = "flex";
+        })
+
+        document.querySelector(".close").addEventListener("click",function(){
+            document.querySelector(".popup").style.display = "none";
+        })
+
+    </script>
+
+</body>
+</html>
