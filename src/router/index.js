@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-
+gi
 const routes = [
   {
     path: '/',
