@@ -1,10 +1,10 @@
 <template>
   <div id="toolbar-wrapper">
-    <div class="logo">
+    <div class="logo mb-4 mt-4">
       <img class="logo-image" :src="`/src/assets/img/logo.png`" style="width: 32px" />
       <a href="#">AHAMAY</a>
     </div>
-    <div class="container">
+    <div class="container mt-4">
       <TabMenu :model="navigation" class="navigation" />
       <Button label="Login" @click="showDialog = true" />
       <Dialog
@@ -105,18 +105,19 @@ export default {
   font-family: 'Roboto', sans-serif;
 }
 #toolbar-wrapper {
-  position: absolute;
   width: 100%;
   display: flex;
   left: 0;
   top: 0%;
   justify-content: space-between;
-  padding: 20px 148px;
   background: #ffff;
 }
 
 .container {
   display: flex;
+  position: absolute;
+  padding-right: 2rem;
+  right: 0;
 }
 
 .container .p-button {
@@ -134,6 +135,7 @@ export default {
   width: 76px !important;
   height: 76px;
   border-radius: 50%;
+  padding-left: 2rem;
 }
 
 .logo a {

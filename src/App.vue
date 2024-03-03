@@ -1,11 +1,13 @@
 <template>
-  <div id="app-wrapper">
-    <Toolbar ref="toolbar" />
+  <div class="app-wrapper">
+    <Toolbar class="" ref="toolbar" />
+    <div class="s-wrapper absolute"><Section class=""></Section></div>
   </div>
 </template>
 
 <script>
 import Toolbar from './components/Toolbar.vue'
+import Section from './components/Section.vue'
 import './assets/main.css'
 import '../node_modules/primeflex/primeflex.scss'
 import 'primevue/resources/themes/lara-light-indigo/theme.css'
@@ -15,7 +17,8 @@ import 'primeicons/primeicons.css'
 export default {
   name: 'Motor Service',
   components: {
-    Toolbar
+    Toolbar,
+    Section
   }
 }
 </script>
@@ -23,6 +26,11 @@ export default {
 <style scoped>
 header {
   line-height: 1.5;
+}
+
+.s-wrapper {
+  width: 100vw;
+  height: 30rem;
 }
 
 .logo {
