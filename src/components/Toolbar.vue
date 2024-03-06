@@ -115,7 +115,6 @@ export default {
 
 .container {
   display: flex;
-  position: absolute;
   padding-right: 2rem;
   right: 0;
 }
