@@ -28,6 +28,9 @@
         label="Get Started"
       />
     </div>
+    <div class="flex flex-row flex-wrap info-wrapper">
+      <div class="image3 flex" :style="backgroundImageStyle3"><div class="">hafi vl</div></div>
+    </div>
   </div>
 </template>
 
@@ -43,7 +46,8 @@ export default {
   data() {
     return {
       imgURL: '/src/assets/img/bannerbg.png',
-      imgURL2: '/src/assets/img/banner2.png'
+      imgURL2: '/src/assets/img/banner2.png',
+      imgURL3: '/src/assets/img/logo.png'
     }
   },
   computed: {
@@ -59,6 +63,12 @@ export default {
         backgroundImage: `url(${this.imgURL2})`,
         backgroundSize: 'cover',
         backgroundPosition: 'top'
+      }
+    },
+    backgroundImageStyle3() {
+      return {
+        backgroundImage: `url(${this.imgURL3})`,
+        backgroundSize: 'auto'
       }
     }
   },
@@ -101,6 +111,26 @@ export default {
   top: 90px;
   letter-spacing: 2px;
   color: #ffff;
+}
+
+.image3 {
+  filter: blur(0.4px);
+  width: 1480px;
+  height: 27rem;
+  margin-left: 4rem;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.image3 div {
+  background-color: #ffff;
+  position: relative;
+  left: 30rem;
+  width: 68%;
+}
+
+.section2-wrapper .info-wrapper {
+  height: 27rem;
 }
 
 .section-wrapper div .about-content {
