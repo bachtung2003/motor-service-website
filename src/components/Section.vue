@@ -24,7 +24,7 @@
         Premium car service matched with great workmanship. Best services you can count on
       </h1>
       <Button
-        class="about2-button flex relative align-items-center text-orange-400 text-sm line-height-3"
+        class="about2-button flex relative align-items-center text-orange-400 border-orange-400 text-sm line-height-3"
         label="Get Started"
       />
     </div>
@@ -86,7 +86,7 @@ export default {
 <style scoped>
 .section-wrapper {
   position: absolute;
-  width: 100%;
+  width: 54%;
   height: 70%;
 }
 
@@ -126,11 +126,15 @@ export default {
   background-color: #ffff;
   position: relative;
   left: 30rem;
-  width: 68%;
+  width: 66%;
 }
 
 .section2-wrapper .info-wrapper {
   height: 27rem;
+}
+
+.section2-wrapper {
+  width: 1480px;
 }
 
 .section-wrapper div .about-content {

@@ -60,6 +60,7 @@
 
 body {
   min-height: 100vh;
+  min-width: 1480px;
   overflow-y: scroll !important;
   color: var(--color-text);
   background: #ffff;
