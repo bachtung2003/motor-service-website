@@ -33,12 +33,12 @@
         <div class="contact-container surface-200 flex flex-column">
           <h2 class="pb-5 text-4xl font-medium">Book a trusted mechanic</h2>
           <p class="font-light text-lg">Call us now</p>
-          <div class="flex pb-8">
+          <div class="flex pb-8 align-items-center">
             <i class="pi pi-phone flex align-items-center pr-3 text-6xl"></i>
             <h1 class="font-medium text-6xl">+1(12) 366 411 4999</h1>
           </div>
           <p class="font-light text-lg">Or Email us</p>
-          <div class="flex">
+          <div class="flex align-items-center">
             <i class="pi pi-envelope flex align-items-center pr-3 text-6xl"></i>
             <h1 class="font-medium text-6xl">support@ahamay.vn</h1>
           </div>
