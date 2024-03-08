@@ -29,7 +29,21 @@
       />
     </div>
     <div class="flex flex-row flex-wrap info-wrapper">
-      <div class="image3 flex" :style="backgroundImageStyle3"><div class="">hafi vl</div></div>
+      <div class="image3 flex" :style="backgroundImageStyle3">
+        <div class="contact-container surface-200 flex flex-column">
+          <h2 class="pb-5 text-6xl font-medium">Book a trusted mechanic</h2>
+          <p class="font-light">Call us now</p>
+          <div class="flex pb-8">
+            <i class="pi pi-phone flex align-items-center pr-3 text-6xl"></i>
+            <h1 class="font-medium">+1(12) 366 411 4999</h1>
+          </div>
+          <p class="font-light">Or Email us</p>
+          <div class="flex">
+            <i class="pi pi-envelope flex align-items-center pr-3 text-6xl"></i>
+            <h1 class="font-medium">support@ahamay.vn</h1>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -68,7 +82,7 @@ export default {
     backgroundImageStyle3() {
       return {
         backgroundImage: `url(${this.imgURL3})`,
-        backgroundSize: 'auto'
+        backgroundSize: 'contain'
       }
     }
   },
@@ -116,17 +130,20 @@ export default {
 .image3 {
   filter: blur(0.4px);
   width: 1480px;
-  height: 27rem;
-  margin-left: 4rem;
+  height: 36rem;
+  margin: 2rem 0rem 0 5rem;
   background-repeat: no-repeat;
-  text-align: center;
 }
 
-.image3 div {
+.image3 .contact-container {
+  letter-spacing: 1px;
+  padding: 4rem 0 0 6rem;
+  color: black;
   background-color: #ffff;
   position: relative;
-  left: 30rem;
-  width: 66%;
+  left: 41rem;
+  margin: 3rem 0 3rem 0;
+  width: 53.19%;
 }
 
 .section2-wrapper .info-wrapper {
