@@ -1,0 +1,99 @@
+<template>
+  <div id="toolbar-wrapper" >
+      <div class ="footer-subcribe-content">
+        <a href="#">Subcribe For Special Offers</a>
+        <p>Get Weekly Newsletter</p>
+      </div>
+      <div class="footer-email-container">
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 630px"/>
+            <label class="left-auto text-lg" for="password">Enter your email</label>
+          </FloatLabel>
+        <Button label="Subscribe" />
+      </div>
+  </div>
+</template>
+
+<script>
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext';
+import FloatLabel from 'primevue/floatlabel';
+
+export default {
+  components: {
+    Button,
+    InputText,
+    FloatLabel
+  }
+}
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+#toolbar-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  left: 0;
+  bottom: -10%;
+  padding: 20px 148px;
+  background: #fe7a36;
+}
+
+.container {
+  display: flex;
+  padding-right: 2rem;
+  right: 0;
+}
+
+.footer-subcribe-content{
+  position: relative;
+  display: block;
+  gap: 10px;
+  width: 500px !important;
+  height: 75px;
+}
+
+.footer-subcribe-content a{
+  font-weight: 500;
+  font-size: 25px;
+  color: #3e3e3e;
+  font-style: normal;
+  color: #ffff;
+}
+
+.footer-subcribe-content p{
+  font-size: 20px;
+  color: #3e3e3e;
+  font-style: normal;
+  font-weight: normal;
+  color: #ffff;
+}
+
+.footer-email-container {
+  position: relative;
+  display: flex;
+}
+
+.footer-email-container .p-button {
+  margin-top: 10px;
+  height: 40px;
+  width: 140px;
+  left: 5%;
+  border-radius: 5px;
+  background: #000000;
+  color: #ffff;
+  border: 1px solid #0000;
+  font-size: 17px;
+}
+
+</style>
