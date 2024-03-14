@@ -79,7 +79,8 @@ export default {
     navigation: [
       { label: 'Home', to: '/' },
       { label: 'About', to: '/about' },
-      { label: 'Contact', to: '/contact' }
+      { label: 'Contact', to: '/contact' },
+      { label: 'Services', to: '/services' }
     ]
   })
 }
@@ -115,7 +116,7 @@ export default {
 
 .container {
   display: flex;
-  padding-right: 2rem;
+  padding-right: 4rem;
   right: 0;
 }
 

@@ -57,6 +57,11 @@ header {
   margin: 0 auto 2rem;
 }
 
+.footer {
+  width: 100%;
+  height: 10rem;
+}
+
 @media (min-width: 1024px) {
   header {
     display: flex;

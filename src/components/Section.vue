@@ -100,7 +100,7 @@ export default {
 <style scoped>
 .section-wrapper {
   position: absolute;
-  width: 54%;
+  width: 100%;
   height: 70%;
 }
 
@@ -110,14 +110,14 @@ export default {
 
 .image {
   filter: blur(0.4px);
-  width: 1480px;
+  width: 100vw;
   height: 100%;
 }
 
 .image2 {
   margin-top: 2.5rem;
   filter: blur(0.4px);
-  width: 1480px;
+  width: 100%;
   height: 77%;
 }
 
@@ -151,7 +151,7 @@ export default {
 }
 
 .section2-wrapper {
-  width: 1480px;
+  width: 100vw;
 }
 
 .section-wrapper div .about-content {

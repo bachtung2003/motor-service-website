@@ -1,23 +1,23 @@
 <template>
-  <div id="toolbar-wrapper" >
-      <div class ="footer-subcribe-content">
-        <a href="#">Subcribe For Special Offers</a>
-        <p>Get Weekly Newsletter</p>
-      </div>
-      <div class="footer-email-container">
-          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-            <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 630px"/>
-            <label class="left-auto text-lg" for="password">Enter your email</label>
-          </FloatLabel>
-        <Button label="Subscribe" />
-      </div>
+  <div id="toolbar-wrapper">
+    <div class="footer-subcribe-content">
+      <a href="#">Subcribe For Special Offers</a>
+      <p>Get Weekly Newsletter</p>
+    </div>
+    <div class="footer-email-container">
+      <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+        <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 630px" />
+        <label class="left-auto text-lg" for="password">Enter your email</label>
+      </FloatLabel>
+      <Button label="Subscribe" />
+    </div>
   </div>
 </template>
 
 <script>
 import Button from 'primevue/button'
-import InputText from 'primevue/inputtext';
-import FloatLabel from 'primevue/floatlabel';
+import InputText from 'primevue/inputtext'
+import FloatLabel from 'primevue/floatlabel'
 
 export default {
   components: {
@@ -39,12 +39,12 @@ export default {
 }
 
 #toolbar-wrapper {
-  position: absolute;
-  width: 100%;
+  position: relative;
+  width: 100vw;
   height: 100px;
   display: flex;
   left: 0;
-  bottom: -10%;
+  bottom: -25%;
   padding: 20px 148px;
   background: #fe7a36;
 }
@@ -55,7 +55,7 @@ export default {
   right: 0;
 }
 
-.footer-subcribe-content{
+.footer-subcribe-content {
   position: relative;
   display: block;
   gap: 10px;
@@ -63,7 +63,7 @@ export default {
   height: 75px;
 }
 
-.footer-subcribe-content a{
+.footer-subcribe-content a {
   font-weight: 500;
   font-size: 25px;
   color: #3e3e3e;
@@ -71,7 +71,7 @@ export default {
   color: #ffff;
 }
 
-.footer-subcribe-content p{
+.footer-subcribe-content p {
   font-size: 20px;
   color: #3e3e3e;
   font-style: normal;
@@ -95,5 +95,4 @@ export default {
   border: 1px solid #0000;
   font-size: 17px;
 }
-
 </style>
