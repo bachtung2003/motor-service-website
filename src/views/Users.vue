@@ -1,0 +1,24 @@
+<template>
+  <div class="Ubanner_wrapper">
+      <Ubanner></Ubanner>
+      <List_Account></List_Account>
+      </div>
+</template>
+
+<script>
+import Ubanner from './components/Ubanner.vue'
+import List_Account from './components/List_Account.vue';
+
+export default {
+  components: {
+    Ubanner,
+    List_Account
+  }
+}
+</script>
+
+<style scoped>
+ .Ubanner_wrapper{
+  width: 1440px;
+ }
+</style>
