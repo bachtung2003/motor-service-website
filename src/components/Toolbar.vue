@@ -6,7 +6,13 @@
     </div>
     <div class="container mt-4">
       <TabMenu :model="navigation" class="navigation" />
-      <Button label="Login" @click="showDialog = true" />
+      <Button @click="menuVisible = !menuVisible" rounded>
+        <div class="flex w-full justify-content-center">
+          <i class="pi pi-user" style="font-size: 2rem; color: black"></i>
+        </div>
+      </Button>
+      <!-- <Button label="Login" @click="showDialog = true" /> -->
+      <Menu v-if="menuVisible" class="card absolute right-0 border-transparent" :model="item" />
       <Dialog
         ref="dialog"
         v-model:visible="showDialog"
@@ -69,6 +75,7 @@ export default {
     FloatLabel
   },
   data: () => ({
+    menuVisible: false,
     showDialog: false, // Add this line
     password: {
       show: false,
@@ -81,8 +88,31 @@ export default {
       { label: 'About', to: '/about' },
       { label: 'Contact', to: '/contact' },
       { label: 'Services', to: '/services' }
+    ],
+    item: [
+      {
+        items: [
+          {
+            label: 'Account Settings',
+            route: '/account'
+          },
+          {
+            label: 'My Orders',
+            route: '/orders'
+          },
+          {
+            label: 'Log Out',
+            route: '/'
+          }
+        ]
+      }
     ]
-  })
+  }),
+  methods: {
+    toggleMenu() {
+      this.menuVisible = !this.menuVisible
+    }
+  }
 }
 </script>
 
@@ -122,11 +152,15 @@ export default {
 
 .container .p-button {
   margin-top: 18px;
-  height: 38px;
-  width: 70px;
+  height: 40px;
+  width: 43px;
   border-radius: 20px;
-  background: #fe7a36;
-  border: 1px solid #fe7a36;
+  background: #ffffff;
+  border: 3px solid black;
+}
+
+.container .p-button:focus {
+  box-shadow: 0 0 0 2px #ffffff;
 }
 .logo {
   display: flex;
@@ -152,8 +186,37 @@ export default {
   height: 76px;
 }
 
-.p-tabmenu {
-  overflow: hidden;
+::v-deep(.p-menu) {
+  top: 11.4% !important;
+  right: 3.9% !important;
+  z-index: 10;
+  padding: 0;
+  border: 2px solid #fe7a36 !important;
+  border-radius: 10px;
+}
+
+::v-deep(.p-menu) .p-submenu-header {
+  display: none;
+}
+
+::v-deep(.p-menu) .p-menuitem {
+  padding: 0.7rem;
+}
+
+::v-deep(.p-menu) .p-menuitem:hover {
+  background-color: #fe7a36;
+}
+
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content .p-menuitem-link {
+  transition: none;
+}
+
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content .p-menuitem-link:hover {
+  background-color: #fe7a36;
+}
+
+::v-deep(.p-menu) .p-menuitem:hover .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+  color: white;
 }
 
 ::v-deep(.p-tabmenu) .p-tabmenu-nav {
