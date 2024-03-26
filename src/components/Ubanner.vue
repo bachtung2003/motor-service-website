@@ -1,16 +1,14 @@
 <template>
-  <div v-if="isSection()" class="section-wrapper">
+  <div class="section-wrapper">
     <div class="image" :style="backgroundImageStyle">
-      <div class="container">
+      <div class="container pl-5 pt-8">
         <div class="content">
-          <a href="#">Home</a>
-          <p>></p>
-          <a href="#">Account detail</a>
+          <a href="/" class="text-lg">Home</a>
+          <p class="text-lg line-height-4">></p>
+          <a href="#" class="text-lg">Account detail</a>
         </div>
-        <h1 class="about-header flex justify-content-center text-white pt-7 text-6xl text-left">
-          USERNAME'S ACCOUNT
-        </h1>
-        <p>Account ID: 001</p>
+        <h1 class="about-header flex text-white text-6xl pt-1 text-left">USERNAME'S ACCOUNT</h1>
+        <p class="text-lg pt-2">Account ID: 001</p>
       </div>
     </div>
   </div>
@@ -35,12 +33,7 @@ export default {
       }
     }
   },
-  methods: {
-    isSection() {
-      if (this.types === 1) return true
-      return false // Ensure to handle the case when types !== 1
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -51,7 +44,7 @@ export default {
   color: #ffff;
 }
 
-.container{
+.container {
   background: rgba(0, 0, 0, 0.613);
   padding-top: 60px;
   height: 294px;
@@ -59,7 +52,7 @@ export default {
 
 .image {
   filter: blur(0.4px);
-  width: 1440px;
+  width: 100%;
   height: 294px;
   font-size: 200%;
 }

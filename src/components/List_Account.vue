@@ -1,33 +1,45 @@
 <template>
-    <div class="container-wrapper">
-      <div id="container_list">
-        <div class="element" @click="changeBackground($event,'Account')">
-          Account details
-        </div>
-        <div class="element" @click="changeBackground($event, 'Orders')">
-          My Orders
-        </div>
-        <div class="element" @click="changeBackground($event, 'Logout')">
-          Logout
-        </div>
+  <div class="container-wrapper">
+    <div id="container_list">
+      <div
+        class="element item_1"
+        v-on:click="setActiveElement('item_1')"
+        v-bind:class="{ active: activeElement === 'item_1' }"
+      >
+        Account details
       </div>
-
-      <div class="info" v-if="displayAccount">
-        <Account></Account>
+      <div
+        class="element item_2"
+        v-on:click="setActiveElement('item_2')"
+        v-bind:class="{ active: activeElement === 'item_2' }"
+      >
+        My Orders
       </div>
-
-      <div class="info" v-if="displayOrders">
-        <p style="color:black">SHOW LIST OF ORDERS</p>
-      </div>
-
-      <div class="info" v-if="displayLogout">
-        <p style="color:black">LOGING OUT...</p>
+      <div
+        class="element item_3"
+        v-on:click="setActiveElement('item_3')"
+        v-bind:class="{ active: activeElement === 'item_3' }"
+      >
+        Logout
       </div>
     </div>
+
+    <div class="info" v-if="displayAccount">
+      <Account></Account>
+    </div>
+
+    <div class="info" v-if="displayOrders">
+      <p style="color: black">SHOW LIST OF ORDERS</p>
+    </div>
+
+    <div class="info" v-if="displayLogout">
+      <p style="color: black">LOGING OUT...</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import Account from './Account.vue';
+import Account from './Account.vue'
 
 export default {
   components: {
@@ -35,48 +47,27 @@ export default {
   },
   data() {
     return {
-      displayAccount: false,
+      displayAccount: true,
       displayOrders: false,
-      displayLogout: false
-    };
+      displayLogout: false,
+      activeElement: 'item_1'
+    }
   },
   methods: {
-    changeBackground(event, type) {
-      const clickedElement = event.target;
-      const elements = document.querySelectorAll('.element');
+    setActiveElement(element) {
+      this.activeElement = element
 
-      // Reset background and font color of all elements
-      elements.forEach(function(element) {
-        element.style.background = 'linear-gradient(to right, white, white)';
-        element.style.color = 'black';
-      });
+      this.displayAccount = false
+      this.displayOrders = false
+      this.displayLogout = false
 
-      // Change background and font color of the clicked element
-      clickedElement.style.background = 'linear-gradient(to right, rgba(189,80,19,1) 3%, rgba(254,106,55,1) 3%, rgba(254,156,106,1) 37%, rgba(254,181,143,1) 60%, rgba(255,243,237,1) 84%, rgba(255,255,255,1) 96%';  
-      clickedElement.style.color = 'white';
-    
-      if (type === 'Account') {
-        this.showAccount();
-      } else if (type === 'Orders') {
-        this.showOrders();
-      } else if (type === 'Logout') {
-        this.showLogout();
+      if (element === 'item_1') {
+        this.displayAccount = true
+      } else if (element === 'item_2') {
+        this.displayOrders = true
+      } else if (element === 'item_3') {
+        this.displayLogout = true
       }
-    },
-    showAccount() {
-      this.displayAccount = true;
-      this.displayOrders = false;
-      this.displayLogout = false;
-    },
-    showOrders() {
-      this.displayAccount = false;
-      this.displayOrders = true;
-      this.displayLogout = false;
-    },
-    showLogout() {
-      this.displayAccount = false;
-      this.displayOrders = false;
-      this.displayLogout = true;
     }
   }
 }
@@ -94,6 +85,18 @@ export default {
   flex: 1;
   padding-right: 20px;
 }
+.active {
+  background: linear-gradient(
+    to right,
+    rgba(189, 80, 19, 1) 3%,
+    rgba(254, 106, 55, 1) 3%,
+    rgba(254, 156, 106, 1) 37%,
+    rgba(254, 181, 143, 1) 60%,
+    rgba(255, 243, 237, 1) 84%,
+    rgba(255, 255, 255, 1) 96%
+  );
+  color: white !important;
+}
 
 .info {
   flex: 2;
@@ -105,6 +108,7 @@ export default {
   font-size: 30px;
   font-weight: 600;
   width: 384px;
+  color: black;
 }
 
 .element:hover {

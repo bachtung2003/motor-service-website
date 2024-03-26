@@ -2,7 +2,7 @@
   <div id="toolbar-wrapper">
     <div class="logo mb-4 mt-4">
       <img class="logo-image" :src="`/src/assets/img/logo.png`" style="width: 32px" />
-      <a href="#">AHAMAY</a>
+      <a href="/">AHAMAY</a>
     </div>
     <div class="container mt-4">
       <TabMenu :model="navigation" class="navigation" />
@@ -84,25 +84,25 @@ export default {
       verify: null
     },
     navigation: [
-      { label: 'Home', to: '/' },
-      { label: 'About', to: '/about' },
-      { label: 'Contact', to: '/contact' },
-      { label: 'Services', to: '/services' }
+      { label: 'Home', url: '/' },
+      { label: 'About', url: '/about' },
+      { label: 'Contact', url: '/contact' },
+      { label: 'Services', url: '/services' }
     ],
     item: [
       {
         items: [
           {
             label: 'Account Settings',
-            route: '/account'
+            url: '/user'
           },
           {
             label: 'My Orders',
-            route: '/orders'
+            url: '/orders'
           },
           {
             label: 'Log Out',
-            route: '/'
+            url: '/'
           }
         ]
       }

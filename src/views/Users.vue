@@ -1,13 +1,13 @@
 <template>
   <div class="Ubanner_wrapper">
-      <Ubanner></Ubanner>
-      <List_Account></List_Account>
-      </div>
+    <Ubanner></Ubanner>
+    <List_Account></List_Account>
+  </div>
 </template>
 
 <script>
-import Ubanner from './components/Ubanner.vue'
-import List_Account from './components/List_Account.vue';
+import Ubanner from '../components/Ubanner.vue'
+import List_Account from '../components/List_Account.vue'
 
 export default {
   components: {
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
- .Ubanner_wrapper{
-  width: 1440px;
- }
+.Ubanner_wrapper {
+  width: 100vw;
+}
 </style>

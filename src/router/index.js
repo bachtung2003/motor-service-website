@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-gi
+
 const routes = [
   {
     path: '/',
@@ -21,6 +21,13 @@ const routes = [
       title: 'Contact'
     },
     component: () => import('@/views/Contact.vue')
+  },
+  {
+    path: '/user',
+    meta: {
+      title: 'User'
+    },
+    component: () => import('@/views/Users.vue')
   }
 ]
 

@@ -46,6 +46,7 @@ export default {
   left: 0;
   bottom: -25%;
   padding: 20px 148px;
+  margin-top: 5rem;
   background: #fe7a36;
 }
 
