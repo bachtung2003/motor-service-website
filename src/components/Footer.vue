@@ -9,7 +9,7 @@
         <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 630px" />
         <label class="left-auto text-lg" for="password">Enter your email</label>
       </FloatLabel>
-      <Button label="Subscribe" />
+      <Button style="justify-items;: center" label="Subscribe" />
     </div>
   </div>
 </template>
@@ -36,23 +36,20 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  justify-content: center; 
+  align-items: center;
 }
 
 #toolbar-wrapper {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   display: flex;
-  left: 0;
-  bottom: -25%;
-  padding: 20px 148px;
-  margin-top: 5rem;
   background: #fe7a36;
 }
 
 .container {
   display: flex;
-  padding-right: 2rem;
   right: 0;
 }
 
@@ -86,7 +83,6 @@ export default {
 }
 
 .footer-email-container .p-button {
-  margin-top: 10px;
   height: 40px;
   width: 140px;
   left: 5%;

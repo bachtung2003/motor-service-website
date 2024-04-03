@@ -87,7 +87,7 @@ export default {
       { label: 'Home', url: '/' },
       { label: 'About', url: '/about' },
       { label: 'Contact', url: '/contact' },
-      { label: 'Services', url: '/services' }
+      { label: 'Services', url: '/appointment' }
     ],
     item: [
       {
@@ -142,6 +142,8 @@ export default {
   top: 0%;
   justify-content: space-between;
   background: #ffff;
+  // position: fixed;
+  // z-index: 99;
 }
 
 .container {
@@ -164,6 +166,7 @@ export default {
 }
 .logo {
   display: flex;
+  position: relative;
   align-items: center;
   gap: 10px;
   width: 76px !important;

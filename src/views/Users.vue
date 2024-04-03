@@ -1,6 +1,6 @@
 <template>
   <div class="Ubanner_wrapper">
-    <Ubanner></Ubanner>
+    <Ubanner class="" :types="2"></Ubanner>
     <List_Account></List_Account>
   </div>
 </template>

@@ -1,7 +1,9 @@
 <template>
+  <div style="display: block">
   <div class="s-wrapper flex"><Section class="" :types="1"></Section></div>
   <div class="service-wrap flex mb-8"><Service class="flex" /></div>
   <div class="s-wrapper flex"><Section class="" :types="2"></Section></div>
+  </div>
 </template>
 
 <script>
@@ -41,7 +43,7 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin-left: -20px;
 }
 
 @media (min-width: 1024px) {
@@ -59,6 +61,10 @@ header {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
+  }
+
+  #toolbar-wrapper{
+    display: block;
   }
 }
 </style>
