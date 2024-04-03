@@ -1,11 +1,27 @@
 <template>
-  <div class="section-wrapper">
+  <div v-if="isSection1()" class="section-wrapper">
     <div class="image" :style="backgroundImageStyle">
       <div class="container pl-5 pt-8">
         <div class="content">
           <a href="/" class="text-lg">Home</a>
           <p class="text-lg line-height-4">></p>
           <a href="#" class="text-lg">Account detail</a>
+        </div>
+        <h1 class="about-header flex text-white text-6xl pt-1 text-left">USERNAME'S ACCOUNT</h1>
+        <p class="text-lg pt-2">Account ID: 001</p>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="isSection2()" class="section-wrapper">
+    <div class="image" :style="backgroundImageStyle2">
+      <div class="container pl-5 pt-8">
+        <div class="content">
+          <a href="/" class="text-lg">Home</a>
+          <p class="text-lg line-height-4">></p>
+          <a href="#" class="text-lg">Service</a>
+          <p class="text-lg line-height-4">></p>
+          <a href="#" class="text-lg">Set Appointment</a>
         </div>
         <h1 class="about-header flex text-white text-6xl pt-1 text-left">USERNAME'S ACCOUNT</h1>
         <p class="text-lg pt-2">Account ID: 001</p>
@@ -21,7 +37,8 @@ export default {
   },
   data() {
     return {
-      imgURL: 'src/assets/img/Autoleaders-scaled.jpg'
+      imgURL: 'src/assets/img/Autoleaders-scaled.jpg',
+      imgURL2: 'src/assets/img/banner2.png'
     }
   },
   computed: {
@@ -31,9 +48,23 @@ export default {
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }
+    },
+    backgroundImageStyle2() {
+      return {
+        backgroundImage: `url(${this.imgURL2})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }
     }
   },
-  methods: {}
+  methods: {
+    isSection1() {
+      if (this.types === 1) return true
+    },
+    isSection2() {
+      if (this.types === 2) return true
+    }
+  }
 }
 </script>
 
