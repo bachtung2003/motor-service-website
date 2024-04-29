@@ -101,4 +101,12 @@ export default {}
   width: 100%;
   padding: 0 5rem 0 5rem;
 }
+
+@media (min-width: 1500px) {
+  .service-wrapper div .service-box {
+    height: 110%;
+    width: 27%;
+    margin: 1.2rem;
+  }
+}
 </style>

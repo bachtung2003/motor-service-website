@@ -44,7 +44,7 @@ header {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1500px) {
   header {
     display: flex;
     place-items: center;
@@ -59,6 +59,12 @@ header {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
+  }
+
+  .s-wrapper {
+    width: 100%;
+    height: 31.6rem;
+    margin-bottom: 8rem;
   }
 }
 </style>

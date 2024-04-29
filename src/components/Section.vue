@@ -131,8 +131,9 @@ export default {
   filter: blur(0.4px);
   width: 1480px;
   height: 36rem;
-  margin: 2rem 0rem 0 5rem;
+  margin: 2rem 0rem 0 3rem;
   background-repeat: no-repeat;
+  /* margin-right: 5rem; */
 }
 
 .image3 .contact-container {
@@ -141,7 +142,7 @@ export default {
   color: black;
   background-color: #ffff;
   position: relative;
-  left: 41rem;
+  left: 38rem;
   margin: 3rem 0 3rem 0;
   width: 53.19%;
 }
@@ -194,5 +195,67 @@ export default {
 
 .section2-wrapper div .about2-button span {
   color: #fe7a36;
+}
+
+@media (min-width: 1500px) {
+  .image2 p {
+    top: 85px;
+    font-size: 1rem !important;
+    letter-spacing: 2px;
+    color: #ffff;
+  }
+
+  .section-wrapper div .about-header {
+    font-size: 4rem !important;
+  }
+
+  .section-wrapper div .about-content {
+    height: 60%;
+    padding-left: 16rem !important;
+    padding-right: 30rem !important;
+    font-size: 1.5rem !important;
+  }
+
+  .section-wrapper div .about-button {
+    top: 13rem;
+    left: 16rem;
+    background-color: #fe7a36;
+    border: solid 1px #fe7a36;
+  }
+
+  .section2-wrapper div .about2-button {
+    letter-spacing: 3px;
+    top: 3rem;
+    left: 54rem;
+    background-color: #ffff;
+    border: solid 1px #ffff;
+  }
+
+  .section2-wrapper div .about2-header {
+    font-weight: 600;
+    padding-left: 20rem !important;
+    padding-right: 19rem !important;
+    padding-top: 5rem;
+  }
+
+  .image3 {
+    filter: blur(0.4px);
+    width: 1480px;
+    height: 36rem;
+    margin: 4rem 0rem 0 9rem;
+    background-repeat: no-repeat;
+    /* margin-right: 5rem; */
+  }
+
+  .image3 .contact-container {
+    letter-spacing: 1px;
+    padding: 4rem 0 0 6rem;
+    color: black;
+    background-color: #ffff;
+    position: relative;
+    left: 51rem;
+    margin: 3rem 0 3rem 0;
+    width: 53.19%;
+  }
 }
 </style>

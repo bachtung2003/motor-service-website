@@ -40,10 +40,12 @@
 
 <script>
 import Account from './Account.vue'
+import Breadcrumb from 'primevue/breadcrumb'
 
 export default {
   components: {
-    Account
+    Account,
+    Breadcrumb
   },
   data() {
     return {
