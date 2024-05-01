@@ -39,7 +39,6 @@ export default {
 }
 
 #toolbar-wrapper {
-  position: relative;
   width: 100vw;
   height: 100px;
   display: flex;
@@ -115,6 +114,37 @@ export default {
     height: 50px;
     width: 160px;
     left: 40%;
+    border-radius: 5px;
+    background: #000000;
+    color: #ffff;
+    border: 1px solid #0000;
+    font-size: 17px;
+  }
+}
+@media (min-width: 2000px) {
+  #toolbar-wrapper {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    left: 0;
+    bottom: -12%;
+    padding: 20px 148px;
+    margin-top: 5rem;
+    background: #fe7a36;
+  }
+  .footer-subcribe-content {
+    position: relative;
+    display: block;
+    gap: 10px;
+    width: 600px !important;
+    height: 75px;
+  }
+
+  .footer-email-container .p-button {
+    margin-top: 8px;
+    height: 50px;
+    width: 160px;
+    left: 80%;
     border-radius: 5px;
     background: #000000;
     color: #ffff;

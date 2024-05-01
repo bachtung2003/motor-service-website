@@ -67,4 +67,11 @@ header {
     margin-bottom: 8rem;
   }
 }
+@media (min-width: 2000px) {
+  .s-wrapper {
+    width: 100%;
+    height: 31.6rem;
+    margin-bottom: 20rem;
+  }
+}
 </style>

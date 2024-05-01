@@ -258,4 +258,31 @@ export default {
     width: 53.19%;
   }
 }
+@media (min-width: 2000px) {
+  .section2-wrapper div .about2-button {
+    letter-spacing: 3px;
+    top: 3rem;
+    left: 68rem;
+    background-color: #ffff;
+    border: solid 1px #ffff;
+  }
+  .image3 .contact-container {
+    letter-spacing: 1px;
+    padding: 4rem 0 0 6rem;
+    color: black;
+    background-color: #ffff;
+    position: relative;
+    left: 65rem;
+    margin: 3rem 0 3rem 0;
+    width: 53.19%;
+  }
+  .image3 {
+    filter: blur(0.4px);
+    width: 1480px;
+    height: 36rem;
+    margin: 4rem 0rem 0 15rem;
+    background-repeat: no-repeat;
+    /* margin-right: 5rem; */
+  }
+}
 </style>
