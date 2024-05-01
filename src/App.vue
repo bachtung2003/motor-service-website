@@ -47,7 +47,6 @@ header {
 }
 
 .logo {
-  display: block;
   margin: 0 auto 2rem;
 }
 
@@ -55,7 +54,6 @@ header {
   width: 100%;
   height: 10rem;
 }
-
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -65,6 +63,7 @@ header {
 
   .logo {
     margin: 0 2rem 0 0;
+    place-items: flex-start;
   }
 
   header .wrapper {

@@ -28,13 +28,6 @@ const routes = [
       title: 'User'
     },
     component: () => import('@/views/Users.vue')
-  },
-  {
-    path: '/services',
-    meta: {
-      title: 'Services'
-    },
-    component: () => import('@/views/Service.vue')
   }
 ]
 

@@ -1,18 +1,18 @@
 <template>
   <div class="Ubanner_wrapper">
     <Ubanner class="" :types="2"></Ubanner>
-    <List_Account></List_Account>
+    <Progress></Progress>
   </div>
 </template>
 
 <script>
 import Ubanner from '../components/Ubanner.vue'
-import List_Account from '../components/List_Account.vue'
+import Progress from '../components/Progress.vue'
 
 export default {
   components: {
     Ubanner,
-    List_Account
+    Progress
   }
 }
 </script>
