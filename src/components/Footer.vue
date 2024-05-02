@@ -41,6 +41,7 @@ export default {
 #toolbar-wrapper {
   width: 100vw;
   height: 100px;
+  position: relative;
   display: flex;
   left: 0;
   bottom: -25%;
@@ -150,6 +151,19 @@ export default {
     color: #ffff;
     border: 1px solid #0000;
     font-size: 17px;
+  }
+}
+
+@media (max-width:1200px){
+  #toolbar-wrapper {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    left: 0;
+    bottom: -30%;
+    padding: 20px 148px;
+    margin-top: 5rem;
+    background: #fe7a36;
   }
 }
 </style>
