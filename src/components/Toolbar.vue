@@ -142,8 +142,8 @@ export default {
   top: 0%;
   justify-content: space-between;
   background: #ffff;
-  // position: fixed;
-  // z-index: 99;
+  //position: fixed;
+  //z-index: 99;
 }
 
 .container {
@@ -155,7 +155,7 @@ export default {
 .container .p-button {
   margin-top: 18px;
   height: 40px;
-  width: 43px;
+  width: 40px;
   border-radius: 20px;
   background: #ffffff;
   border: 3px solid black;

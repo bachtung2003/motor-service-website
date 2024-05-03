@@ -1,17 +1,17 @@
 <template>
-  <div id="toolbar-wrapper">
+  <footer class="footer" id="toolbar-wrapper">
     <div class="footer-subcribe-content">
       <a href="#">Subcribe For Special Offers</a>
       <p>Get Weekly Newsletter</p>
     </div>
     <div class="footer-email-container">
       <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-        <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 630px" />
+        <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 40vw" />
         <label class="left-auto text-lg" for="password">Enter your email</label>
       </FloatLabel>
-      <Button style="justify-items;: center" label="Subscribe" />
+      <Button style="justify-items: center" label="Subscribe" />
     </div>
-  </div>
+  </footer>
 </template>
 
 <script>
@@ -56,21 +56,19 @@ export default {
 .footer-subcribe-content {
   position: relative;
   display: block;
-  gap: 10px;
-  width: 500px !important;
-  height: 75px;
+  width: 30vw;
 }
 
 .footer-subcribe-content a {
   font-weight: 500;
-  font-size: 25px;
+  font-size: 2vw;
   color: #3e3e3e;
   font-style: normal;
   color: #ffff;
 }
 
 .footer-subcribe-content p {
-  font-size: 20px;
+  font-size: 1.5vw;
   color: #3e3e3e;
   font-style: normal;
   font-weight: normal;
@@ -84,12 +82,12 @@ export default {
 
 .footer-email-container .p-button {
   height: 40px;
-  width: 140px;
+  width: 10vw;
   left: 5%;
   border-radius: 5px;
   background: #000000;
   color: #ffff;
   border: 1px solid #0000;
-  font-size: 17px;
+  font-size: 1vw;
 }
 </style>

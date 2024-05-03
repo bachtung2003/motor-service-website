@@ -1,11 +1,11 @@
 <template>
   <div v-if="isSection1()" class="section-wrapper">
     <div class="image" :style="backgroundImageStyle">
-      <h1 class="about-header flex justify-content-center text-white pt-7 text-6xl text-left">
+      <h1 class="about-header flex text-white pt-7 text-6xl text-left">
         Professional Car Repair and Mantainance
       </h1>
       <div
-        class="about-content absolute font-light flex justify-content-center text-white pt-5 text-base text-left"
+        class="about-content absolute font-light flex justify-content-center text-white text-base text-left"
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -19,7 +19,7 @@
 
   <div v-if="isSection2()" class="section2-wrapper">
     <div class="image2" :style="backgroundImageStyle2">
-      <p class="flex relative justify-content-center text-xs">GREAT CAR SERVICE</p>
+      <p class="flex relative justify-content-center text-s">GREAT CAR SERVICE</p>
       <h1 class="about2-header flex justify-content-center text-white text-5xl text-center">
         Premium car service matched with great workmanship. Best services you can count on
       </h1>
@@ -28,9 +28,11 @@
         label="Get Started"
       />
     </div>
-    <div class="flex flex-row flex-wrap info-wrapper">
+  </div>
+  <div v-if="isSection3()" class="section3-wrapper">
       <div class="image3 flex" :style="backgroundImageStyle3">
-        <div class="contact-container surface-200 flex flex-column">
+      </div>
+      <div class="contact-container flex flex-column">
           <h2 class="pb-5 text-4xl font-medium">Book a trusted mechanic</h2>
           <p class="font-light text-lg">Call us now</p>
           <div class="flex pb-8 align-items-center">
@@ -43,9 +45,7 @@
             <h1 class="font-medium text-6xl">support@ahamay.vn</h1>
           </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -92,6 +92,9 @@ export default {
     },
     isSection2() {
       if (this.types === 2) return true
+    },
+    isSection3() {
+      if (this.types === 3) return true
     }
   }
 }
@@ -101,7 +104,7 @@ export default {
 .section-wrapper {
   position: absolute;
   width: 100%;
-  height: 70%;
+  height: 31.6rem;
 }
 
 .section-wrapper div {
@@ -115,39 +118,33 @@ export default {
 }
 
 .image2 {
-  margin-top: 2.5rem;
   filter: blur(0.4px);
   width: 100%;
-  height: 77%;
+  height: 31.6rem;
 }
 
 .image2 p {
   top: 90px;
   letter-spacing: 2px;
   color: #ffff;
+  padding-bottom:8.5rem;
+  
 }
 
 .image3 {
-  filter: blur(0.4px);
-  width: 1480px;
-  height: 36rem;
-  margin: 2rem 0rem 0 5rem;
+  width: 40vw;
+  height: 31.6vw;
+  margin: 0rem 0rem 0 11%;
   background-repeat: no-repeat;
 }
 
-.image3 .contact-container {
-  letter-spacing: 1px;
-  padding: 4rem 0 0 6rem;
-  color: black;
-  background-color: #ffff;
-  position: relative;
-  left: 41rem;
-  margin: 3rem 0 3rem 0;
-  width: 53.19%;
+.contact-container {
+  margin-top: 55px;
+  margin-left: 10%;
 }
 
 .section2-wrapper .info-wrapper {
-  height: 27rem;
+  height: 50rem;
 }
 
 .section2-wrapper {
@@ -156,34 +153,32 @@ export default {
 
 .section-wrapper div .about-content {
   height: 38.5%;
-  padding-left: 16rem !important;
-  padding-right: 30rem !important;
+  padding-left: 16vw !important;
+  padding-right: 25vw !important;
 }
 
 .section-wrapper div .about-header {
   font-weight: 600;
-  padding-left: 16rem !important;
-  padding-right: 30rem !important;
+  padding-left: 16vw !important;
+  padding-right: 25vw !important;
 }
 
 .section2-wrapper div .about2-header {
   font-weight: 600;
-  padding-left: 16rem !important;
-  padding-right: 14rem !important;
-  padding-top: 5rem;
+  padding-left: 14vw !important;
+  padding-right: 14vw !important;
+  padding-bottom: 4%;
 }
 
 .section-wrapper div .about-button {
   top: 9rem;
-  left: 16rem;
+  left: 16vw;
   background-color: #fe7a36;
   border: solid 1px #fe7a36;
 }
 
 .section2-wrapper div .about2-button {
   letter-spacing: 3px;
-  top: 3rem;
-  left: 42rem;
   background-color: #ffff;
   border: solid 1px #ffff;
 }
@@ -194,5 +189,27 @@ export default {
 
 .section2-wrapper div .about2-button span {
   color: #fe7a36;
+}
+
+.section3-wrapper {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.text-6xl {
+    font-size: 3vw !important;
+}
+
+.text-5xl {
+    font-size: 2.5vw !important;
+}
+
+.pb-8 {
+    padding-bottom: 5vw !important;
+}
+
+*{
+    color: black;
 }
 </style>

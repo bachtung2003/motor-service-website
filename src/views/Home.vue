@@ -3,6 +3,7 @@
   <div class="s-wrapper flex"><Section class="" :types="1"></Section></div>
   <div class="service-wrap flex mb-8"><Service class="flex" /></div>
   <div class="s-wrapper flex"><Section class="" :types="2"></Section></div>
+  <div class="s-wrapper flex"><Section class="" :types="3"></Section></div>
   </div>
 </template>
 
