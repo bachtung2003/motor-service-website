@@ -5,7 +5,7 @@
       <a href="/">AHAMAY</a>
     </div>
     <div class="container mt-4">
-      <TabMenu :model="navigation" class="navigation" />
+      <TabMenu :model="navigation" class="navigation mr-2" />
       <Button @click="menuVisible = !menuVisible" rounded>
         <div class="flex w-full justify-content-center">
           <i class="pi pi-user" style="font-size: 2rem; color: black"></i>

@@ -28,13 +28,6 @@ const routes = [
       title: 'User'
     },
     component: () => import('@/views/Users.vue')
-  },
-  {
-    path: '/appointment',
-    meta: {
-      title: 'Appointment'
-    },
-    component: () => import('@/views/SetAppointment.vue')
   }
 ]
 

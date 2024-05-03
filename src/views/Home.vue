@@ -1,9 +1,15 @@
 <template>
   <div style="display: block">
+<<<<<<< HEAD
   <div class="s-wrapper flex"><Section class="" :types="1"></Section></div>
   <div class="service-wrap flex mb-8"><Service class="flex" /></div>
   <div class="s-wrapper flex"><Section class="" :types="2"></Section></div>
   <div class="s-wrapper flex"><Section class="" :types="3"></Section></div>
+=======
+    <div class="s-wrapper flex"><Section class="" :types="1"></Section></div>
+    <div class="service-wrap flex mb-8"><Service class="flex" /></div>
+    <div class="s-wrapper flex"><Section class="" :types="2"></Section></div>
+>>>>>>> 248c5e23870da15b38a209219ce1742fe3da6119
   </div>
 </template>
 
@@ -47,7 +53,7 @@ header {
   margin-left: -20px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1500px) {
   header {
     display: flex;
     place-items: center;
@@ -64,8 +70,17 @@ header {
     flex-wrap: wrap;
   }
 
-  #toolbar-wrapper{
-    display: block;
+  .s-wrapper {
+    width: 100%;
+    height: 31.6rem;
+    margin-bottom: 8rem;
+  }
+}
+@media (min-width: 2000px) {
+  .s-wrapper {
+    width: 100%;
+    height: 31.6rem;
+    margin-bottom: 20rem;
   }
 }
 </style>
