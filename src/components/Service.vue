@@ -103,16 +103,14 @@ export default {}
   padding: 0 5rem 0 5rem;
 }
 
-<<<<<<< HEAD
 .text-4xl {
     font-size: 2vw !important;
-=======
+}
 @media (min-width: 1500px) {
   .service-wrapper div .service-box {
     height: 110%;
     width: 27%;
     margin: 1.2rem;
   }
->>>>>>> 248c5e23870da15b38a209219ce1742fe3da6119
 }
 </style>

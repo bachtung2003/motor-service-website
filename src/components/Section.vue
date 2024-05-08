@@ -121,46 +121,24 @@ export default {
   filter: blur(0.4px);
   width: 100%;
   height: 31.6rem;
+  align-content: center;
 }
 
 .image2 p {
-  top: 90px;
   letter-spacing: 2px;
   color: #ffff;
-  padding-bottom:8.5rem;
-  
 }
 
 .image3 {
-<<<<<<< HEAD
   width: 40vw;
   height: 31.6vw;
   margin: 0rem 0rem 0 11%;
-=======
-  filter: blur(0.4px);
-  width: 1480px;
-  height: 36rem;
-  margin: 2rem 0rem 0 3rem;
->>>>>>> 248c5e23870da15b38a209219ce1742fe3da6119
   background-repeat: no-repeat;
-  /* margin-right: 5rem; */
 }
 
-<<<<<<< HEAD
 .contact-container {
   margin-top: 55px;
   margin-left: 10%;
-=======
-.image3 .contact-container {
-  letter-spacing: 1px;
-  padding: 4rem 0 0 6rem;
-  color: black;
-  background-color: #ffff;
-  position: relative;
-  left: 38rem;
-  margin: 3rem 0 3rem 0;
-  width: 53.19%;
->>>>>>> 248c5e23870da15b38a209219ce1742fe3da6119
 }
 
 .section2-wrapper .info-wrapper {
@@ -187,7 +165,6 @@ export default {
   font-weight: 600;
   padding-left: 14vw !important;
   padding-right: 14vw !important;
-  padding-bottom: 4%;
 }
 
 .section-wrapper div .about-button {
@@ -211,7 +188,6 @@ export default {
   color: #fe7a36;
 }
 
-<<<<<<< HEAD
 .section3-wrapper {
   width: 100vw;
   display: flex;
@@ -224,6 +200,8 @@ export default {
 
 .text-5xl {
     font-size: 2.5vw !important;
+    padding-top: 90px;
+    padding-bottom: 4rem;
 }
 
 .pb-8 {
@@ -232,94 +210,5 @@ export default {
 
 *{
     color: black;
-=======
-@media (min-width: 1500px) {
-  .image2 p {
-    top: 85px;
-    font-size: 1rem !important;
-    letter-spacing: 2px;
-    color: #ffff;
-  }
-
-  .section-wrapper div .about-header {
-    font-size: 4rem !important;
-  }
-
-  .section-wrapper div .about-content {
-    height: 60%;
-    padding-left: 16rem !important;
-    padding-right: 30rem !important;
-    font-size: 1.5rem !important;
-  }
-
-  .section-wrapper div .about-button {
-    top: 13rem;
-    left: 16rem;
-    background-color: #fe7a36;
-    border: solid 1px #fe7a36;
-  }
-
-  .section2-wrapper div .about2-button {
-    letter-spacing: 3px;
-    top: 3rem;
-    left: 54rem;
-    background-color: #ffff;
-    border: solid 1px #ffff;
-  }
-
-  .section2-wrapper div .about2-header {
-    font-weight: 600;
-    padding-left: 20rem !important;
-    padding-right: 19rem !important;
-    padding-top: 5rem;
-  }
-
-  .image3 {
-    filter: blur(0.4px);
-    width: 1480px;
-    height: 36rem;
-    margin: 4rem 0rem 0 9rem;
-    background-repeat: no-repeat;
-    /* margin-right: 5rem; */
-  }
-
-  .image3 .contact-container {
-    letter-spacing: 1px;
-    padding: 4rem 0 0 6rem;
-    color: black;
-    background-color: #ffff;
-    position: relative;
-    left: 51rem;
-    margin: 3rem 0 3rem 0;
-    width: 53.19%;
-  }
-}
-@media (min-width: 2000px) {
-  .section2-wrapper div .about2-button {
-    letter-spacing: 3px;
-    top: 3rem;
-    left: 68rem;
-    background-color: #ffff;
-    border: solid 1px #ffff;
-  }
-  .image3 .contact-container {
-    letter-spacing: 1px;
-    padding: 4rem 0 0 6rem;
-    color: black;
-    background-color: #ffff;
-    position: relative;
-    left: 65rem;
-    margin: 3rem 0 3rem 0;
-    width: 53.19%;
-  }
-  .image3 {
-    filter: blur(0.4px);
-    width: 1480px;
-    height: 36rem;
-    margin: 4rem 0rem 0 15rem;
-    background-repeat: no-repeat;
-    /* margin-right: 5rem; */
-  }
->>>>>>> 248c5e23870da15b38a209219ce1742fe3da6119
 }
 </style>

@@ -9,11 +9,7 @@
         <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 40vw" />
         <label class="left-auto text-lg" for="password">Enter your email</label>
       </FloatLabel>
-<<<<<<< HEAD
       <Button style="justify-items: center" label="Subscribe" />
-=======
-      <Button label="Subscribe" />
->>>>>>> 248c5e23870da15b38a209219ce1742fe3da6119
     </div>
   </footer>
 </template>
@@ -36,8 +32,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
@@ -45,19 +39,14 @@ export default {
 #toolbar-wrapper {
   width: 100vw;
   height: 100px;
-  position: relative;
   display: flex;
-  left: 0;
-  bottom: -25%;
-  padding: 20px 148px;
-  margin-top: 5rem;
   background: #fe7a36;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
   display: flex;
-  padding-right: 2rem;
-  right: 0;
 }
 
 .footer-subcribe-content {
@@ -88,7 +77,6 @@ export default {
 }
 
 .footer-email-container .p-button {
-  margin-top: 10px;
   height: 40px;
   width: 10vw;
   left: 5%;
@@ -97,75 +85,6 @@ export default {
   color: #ffff;
   border: 1px solid #0000;
   font-size: 1vw;
-}
-
-@media (min-width: 1500px) {
-  #toolbar-wrapper {
-    position: relative;
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    left: 0;
-    bottom: -25%;
-    padding: 20px 148px;
-    margin-top: 2rem;
-    background: #fe7a36;
-  }
-
-  .footer-email-container .p-button {
-    margin-top: 8px;
-    height: 50px;
-    width: 160px;
-    left: 40%;
-    border-radius: 5px;
-    background: #000000;
-    color: #ffff;
-    border: 1px solid #0000;
-    font-size: 17px;
-  }
-}
-@media (min-width: 2000px) {
-  #toolbar-wrapper {
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    left: 0;
-    bottom: -12%;
-    padding: 20px 148px;
-    margin-top: 5rem;
-    background: #fe7a36;
-  }
-  .footer-subcribe-content {
-    position: relative;
-    display: block;
-    gap: 10px;
-    width: 600px !important;
-    height: 75px;
-  }
-
-  .footer-email-container .p-button {
-    margin-top: 8px;
-    height: 50px;
-    width: 160px;
-    left: 80%;
-    border-radius: 5px;
-    background: #000000;
-    color: #ffff;
-    border: 1px solid #0000;
-    font-size: 17px;
-  }
-}
-
-@media (max-width:1200px){
-  #toolbar-wrapper {
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    left: 0;
-    bottom: -30%;
-    padding: 20px 148px;
-    margin-top: 5rem;
-    background: #fe7a36;
-  }
+  align-self: center;
 }
 </style>
