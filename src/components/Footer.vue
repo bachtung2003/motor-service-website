@@ -1,5 +1,5 @@
 <template>
-  <div id="toolbar-wrapper" :style="{ bottom: isHome() ? '-25%' : '0%' }">
+  <div id="toolbar-wrapper" :style="{ bottom: isHome() ? '-29%' : '0%' }">
     <div class="footer-subcribe-content">
       <a href="#">Subcribe For Special Offers</a>
       <p>Get Weekly Newsletter</p>
