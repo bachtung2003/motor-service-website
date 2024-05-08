@@ -1,5 +1,5 @@
 <template>
-  <div id="toolbar-wrapper">
+  <div id="toolbar-wrapper" :style="{ bottom: isHome() ? '-25%' : '0%' }">
     <div class="footer-subcribe-content">
       <a href="#">Subcribe For Special Offers</a>
       <p>Get Weekly Newsletter</p>
@@ -24,6 +24,11 @@ export default {
     Button,
     InputText,
     FloatLabel
+  },
+  methods: {
+    isHome() {
+      return this.$route.path === '/'
+    }
   }
 }
 </script>
@@ -154,7 +159,7 @@ export default {
   }
 }
 
-@media (max-width:1200px){
+@media (max-width: 1200px) {
   #toolbar-wrapper {
     width: 100vw;
     height: 100px;

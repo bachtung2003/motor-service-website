@@ -15,7 +15,7 @@
         <div class="content">
           <a href="/" class="text-lg">Home</a>
           <p class="text-lg line-height-4">></p>
-          <a href="#" class="text-lg">Service</a>
+          <a href="/services" class="text-lg">Service</a>
           <p class="text-lg line-height-4">></p>
           <a href="#" class="text-lg">Set Appointment</a>
         </div>
