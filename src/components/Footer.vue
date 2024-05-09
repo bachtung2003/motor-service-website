@@ -1,15 +1,15 @@
 <template>
-  <div id="toolbar-wrapper" :style="{ bottom: isHome() ? '-29%' : '0%' }">
+  <div id="toolbar-wrapper">
     <div class="footer-subcribe-content">
       <a href="#">Subcribe For Special Offers</a>
       <p>Get Weekly Newsletter</p>
     </div>
-    <div class="footer-email-container">
+    <div class="footer-email-container align-items-center">
       <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-        <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 630px" />
+        <InputText id="email" class="flex h-3rem mt-3" autocomplete="off" style="width: 40vw" />
         <label class="left-auto text-lg" for="password">Enter your email</label>
       </FloatLabel>
-      <Button label="Subscribe" />
+      <Button class="" label="Subscribe" />
     </div>
   </div>
 </template>
@@ -37,8 +37,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
@@ -46,39 +44,33 @@ export default {
 #toolbar-wrapper {
   width: 100vw;
   height: 100px;
-  position: relative;
+  margin-top: 2%;
   display: flex;
-  left: 0;
-  bottom: -25%;
-  padding: 20px 148px;
-  margin-top: 5rem;
   background: #fe7a36;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
   display: flex;
-  padding-right: 2rem;
-  right: 0;
 }
 
 .footer-subcribe-content {
   position: relative;
   display: block;
-  gap: 10px;
-  width: 500px !important;
-  height: 75px;
+  width: 30vw;
 }
 
 .footer-subcribe-content a {
   font-weight: 500;
-  font-size: 25px;
+  font-size: 2vw;
   color: #3e3e3e;
   font-style: normal;
   color: #ffff;
 }
 
 .footer-subcribe-content p {
-  font-size: 20px;
+  font-size: 1.5vw;
   color: #3e3e3e;
   font-style: normal;
   font-weight: normal;
@@ -91,9 +83,8 @@ export default {
 }
 
 .footer-email-container .p-button {
-  margin-top: 10px;
   height: 40px;
-  width: 140px;
+  width: 10vw;
   left: 5%;
   border-radius: 5px;
   background: #000000;

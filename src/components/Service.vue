@@ -1,5 +1,5 @@
 <template>
-  <div class="service-wrapper flex flex-column align-items-center mt-7">
+  <div class="service-wrapper flex flex-column align-items-center">
     <p class="p1 relative text-sm pt-4">OUR SERVICE</p>
     <h1 class="text-5xl font-semibold">Great Car Service</h1>
     <div class="service-content flex justify-content-center">
@@ -72,6 +72,7 @@ export default {}
   background-color: #f7f7f7;
   width: 100%;
   height: 100%;
+  margin-top: 2.5rem;
 }
 
 .service-wrapper .p1 {
@@ -102,6 +103,9 @@ export default {}
   padding: 0 5rem 0 5rem;
 }
 
+.text-4xl {
+    font-size: 2vw !important;
+}
 @media (min-width: 1500px) {
   .service-wrapper div .service-box {
     height: 110%;
