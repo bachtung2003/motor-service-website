@@ -93,7 +93,7 @@ export default {
   font-size: 17px;
 }
 
-@media (min-width: 1500px) {
+/* @media (min-width: 1500px) {
   #toolbar-wrapper {
     position: relative;
     width: 100vw;
@@ -161,5 +161,5 @@ export default {
     margin-top: 5rem;
     background: #fe7a36;
   }
-}
+} */
 </style>
