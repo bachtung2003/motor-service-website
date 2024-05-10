@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue' 
+import { ref, onMounted, onUnmounted } from 'vue'
 import Section from '../components/Section.vue'
 import Service from '../components/Service.vue'
 
@@ -25,27 +25,34 @@ import '../../node_modules/primeflex/primeflex.scss'
 import 'primevue/resources/themes/lara-light-indigo/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
+
 export default {
   components: {
     Section,
     Service
   },
-  setup() {
-    const isServiceVisible = ref(false)
-
-    const isSectionVisible = (sectionNumber) => {
-      return sectionNumber === 1 ? isServiceVisible.value : true
+  data() {
+    return {
+      isServiceVisible: false,
+      isSection1Visible: false
     }
-
-    const checkServiceVisibility = () => {
+  },
+  methods: {
+    isSectionVisible(sectionNumber) {
+      if (sectionNumber === 1) {
+        return this.isServiceVisible && this.isSection1Visible
+      } else {
+        return true
+      }
+    },
+    checkServiceVisibility() {
       const serviceElement = document.querySelector('.service-wrap')
       if (serviceElement) {
         const rect = serviceElement.getBoundingClientRect()
-        isServiceVisible.value = rect.top >= 0 && rect.bottom <= window.innerHeight
+        this.isServiceVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
       }
-    }
-
-    const checkSectionVisibility = () => {
+    },
+    checkSectionVisibility() {
       const section1Element = document.querySelector('.s-wrapper:nth-child(1)')
       const section2Element = document.querySelector('.s-wrapper:nth-child(3)')
       const section3Element = document.querySelector('.s-wrapper:nth-child(4)')
@@ -63,23 +70,28 @@ export default {
       }
 
       if (section1Element) {
-        section1Element.classList.add('reveal')
+        if (window.scrollY > this.lastScrollPosition) {
+          this.isSection1Visible = false
+          section1Element.classList.remove('reveal')
+        } else {
+          setTimeout(() => {
+            this.isSection1Visible = true
+            section1Element.classList.add('reveal')
+          }, 500)
+        }
       }
+      this.lastScrollPosition = window.scrollY
     }
-
-    onMounted(() => {
-      window.addEventListener('scroll', checkServiceVisibility)
-      window.addEventListener('scroll', checkSectionVisibility)
-      checkServiceVisibility() 
-      checkSectionVisibility()
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener('scroll', checkServiceVisibility)
-      window.removeEventListener('scroll', checkSectionVisibility)
-    })
-
-    return { isSectionVisible, isServiceVisible }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.checkServiceVisibility)
+    window.addEventListener('scroll', this.checkSectionVisibility)
+    this.checkServiceVisibility()
+    this.checkSectionVisibility()
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.checkServiceVisibility)
+    window.removeEventListener('scroll', this.checkSectionVisibility)
   }
 }
 </script>
