@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       isServiceVisible: false,
-      isSection1Visible: false // New reactive variable for section 1 visibility
+      isSection1Visible: false
     }
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
       if (sectionNumber === 1) {
         return this.isServiceVisible && this.isSection1Visible
       } else {
-        return true // Always return true for sections 2 and 3
+        return true
       }
     },
     checkServiceVisibility() {
