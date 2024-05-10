@@ -31,7 +31,37 @@
         </div>
       </div>
       <div v-else-if="step === 2">
-        <p>CUSTOMER INFORMATION</p>
+        <div class="message">Collect Information Form</div>
+        <div class="form-container">
+          <div class="input-group">
+            <label for="fullname">Full Name:</label>
+            <InputText id="fullname" v-model="userInfo.name" />
+          </div>
+          <div class="input-group">
+            <label for="dob">Date of Birth:</label>
+            <InputText id="dob" v-model="userInfo.dob" />
+          </div>
+          <div class="input-group">
+            <label for="address">Address:</label>
+            <InputText id="address" v-model="userInfo.address" />
+          </div>
+          <div class="input-group">
+            <label for="country">Country:</label>
+            <InputText id="country" v-model="userInfo.country" />
+          </div>
+          <div class="input-group">
+            <label for="zipcode">ZIP Code:</label>
+            <InputText id="zipcode" v-model="userInfo.zipcode" />
+          </div>
+          <div class="input-group">
+            <label for="email">Email Address:</label>
+            <InputText id="email" v-model="userInfo.email" />
+          </div>
+          <div class="input-group">
+            <label for="phone">Phone Number:</label>
+            <InputText id="phone" v-model="userInfo.phone" />
+          </div>
+        </div>
         <div class="buttons">
           <Button class="back-button" @click="prevStep">Back</Button>
           <Button class="submit-button" @click="submitForm">Submit</Button>
@@ -39,11 +69,15 @@
       </div>
       <div v-else>
         <div class="message">Summary</div>
-          <p>Name: ...</p>
-          <p>Age: ...</p>
-          <p>Order: ...</p>
-          <div class="buttons">
-          <Button class="reset-button" @click="resetStages">MAKE THE ORDER AGAIN</Button>
+        <p>Name: {{ userInfo.name }}</p>
+        <p>Date Of Birth: {{ userInfo.dateOfBirth }}</p>
+        <p>Address: {{ userInfo.address }}</p>
+        <p>Country: {{ userInfo.country }}</p>
+        <p>ZIP Code: {{ userInfo.zipCode }}</p>
+        <p>Email Address: {{ userInfo.email }}</p>
+        <p>Phone number: {{ userInfo.phone }}</p>
+        <div class="buttons">
+          <Button class="reset-button" @click="resetStages">REORDER</Button>
         </div>
       </div>
     </div>
@@ -51,13 +85,15 @@
 </template>
 
 <script>
-import ProgressBar from 'primevue/progressbar';
-import Button from 'primevue/button';
+import ProgressBar from 'primevue/progressbar'
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
 
 export default {
   components: {
     ProgressBar,
-    Button
+    Button,
+    InputText
   },
   data() {
     return {
@@ -65,32 +101,41 @@ export default {
       progress: [0, 0, 0],
       userInfo: {
         name: '',
-        age: ''
+        dateOfBirth: '',
+        address: '',
+        country: '',
+        zipCode: '',
+        email: '',
+        phone: ''
       }
-    };
+    }
   },
   methods: {
     nextStep() {
-      this.progress[this.step] = 100;
-      this.step++;
+      this.progress[this.step] = 100
+      this.step++
     },
     prevStep() {
-      this.step--;
-      this.progress[this.step] = 0;
+      this.step--
+      this.progress[this.step] = 0
     },
     submitForm() {
-      this.progress = [100, 100, 100];
-      this.step++;
+      this.progress = [100, 100, 100]
+      this.step++
     },
     resetStages() {
-      this.step = 0;
-      this.progress = [0, 0, 0];
+      this.step = 0
+      this.progress = [0, 0, 0]
     }
   }
 }
 </script>
 
 <style scoped>
+* {
+  color: black;
+}
+
 #big-container {
   width: 902px;
   height: 600px;
@@ -104,7 +149,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: #FE7A36;
+  background-color: #fe7a36;
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -166,58 +211,61 @@ export default {
   margin-top: 10px;
 }
 
-/* .back-button,
-.next-button,
-.submit-button,
-.reset-button {
-  font-size: 16px;
-  color: #FE7A36;
-  background-color: white;
-  border: 2px solid #FE7A36;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.back-button:hover,
-.next-button:hover,
-.submit-button:hover,
-.reset-button:hover
-{
-  background-color: #FE7A36;
-  color: white;
-} */
-
-
 .summary-board {
-  background-color: #FE7A36;
+  background-color: #fe7a36;
   padding: 20px;
   margin-top: 20px;
   color: white;
 }
-
-p {
-  color: black;
-}
-
 </style>
 <style>
-.p-progressbar-value{
+.p-progressbar-value {
   background-color: black;
 }
 .p-button {
   font-size: 16px;
-  color: #FE7A36;
+  color: #fe7a36;
   background-color: white;
-  border: 2px solid #FE7A36;
+  border: 2px solid #fe7a36;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
 }
 
 .p-button:hover {
-  background-color: #FE7A36;
+  background-color: #fe7a36;
   color: white;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.second-container > div:not(.card) {
+  background-color: #FEF9F7;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.second-container > div:not(.card) p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: black;
 }
 
 </style>
