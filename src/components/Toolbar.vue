@@ -86,7 +86,7 @@ export default {
     navigation: [
       { label: 'Home', url: '/' },
       { label: 'About', url: '/about' },
-      { label: 'Contact', url: '/contact' },
+      { label: 'Contact', url: '#contact' },
       { label: 'Services', url: '/services' }
     ],
     item: [

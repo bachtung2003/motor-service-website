@@ -44,7 +44,6 @@ export default {
 #toolbar-wrapper {
   width: 100vw;
   height: 100px;
-  margin-top: 2%;
   display: flex;
   background: #fe7a36;
   align-items: center;
