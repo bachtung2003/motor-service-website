@@ -28,8 +28,7 @@ export default {
 <style>
 .app-wrapper {
   width: 100%;
-  height: 100%;
-  padding: 0;
+  height: 120%;
 }
 
 header {

@@ -18,70 +18,63 @@
     <div class="second-container">
       <div v-if="step === 0">
         <div class="message">Message</div>
-        <textarea class="input"></textarea>
+        <textarea class="input" v-model="userInfo.message"></textarea>
         <div class="buttons">
-          <Button class="next-button" @click="nextStep">Next</Button>
+          <Button class="next-button" @click="nextStep">Next  ></Button>
         </div>
       </div>
       <div v-else-if="step === 1">
         <p>AGENT LIST</p>
         <div class="buttons">
-          <Button class="back-button" @click="prevStep">Back</Button>
-          <Button class="next-button" @click="nextStep">Next</Button>
+          <Button class="back-button" @click="prevStep"><  Back</Button>
+          <Button class="next-button" @click="nextStep">Next  ></Button>
         </div>
       </div>
       <div v-else-if="step === 2">
-        <div class="message">Collect Information Form</div>
         <div class="form-container">
           <div class="input-group">
-            <label for="fullname">Full Name:</label>
+            <label for="fullname">Name:</label>
             <InputText id="fullname" v-model="userInfo.name" />
           </div>
           <div class="input-group">
-            <label for="dob">Date of Birth:</label>
-            <InputText id="dob" v-model="userInfo.dob" />
+            <label for="phone">Phone:</label>
+            <InputText id="phone" v-model="userInfo.phone" />
+          </div>
+          <div class="input-group">
+            <label for="email">E-mail:</label>
+            <InputText id="email" v-model="userInfo.email" />
           </div>
           <div class="input-group">
             <label for="address">Address:</label>
             <InputText id="address" v-model="userInfo.address" />
           </div>
           <div class="input-group">
-            <label for="country">Country:</label>
-            <InputText id="country" v-model="userInfo.country" />
-          </div>
-          <div class="input-group">
-            <label for="zipcode">ZIP Code:</label>
-            <InputText id="zipcode" v-model="userInfo.zipcode" />
-          </div>
-          <div class="input-group">
-            <label for="email">Email Address:</label>
-            <InputText id="email" v-model="userInfo.email" />
-          </div>
-          <div class="input-group">
-            <label for="phone">Phone Number:</label>
-            <InputText id="phone" v-model="userInfo.phone" />
+            <label for="dob">Appointment Date:</label>
+            <InputText id="dob" v-model="userInfo.dob" />
           </div>
         </div>
         <div class="buttons">
-          <Button class="back-button" @click="prevStep">Back</Button>
+          <Button class="back-button" @click="prevStep"><  Back</Button>
           <Button class="submit-button" @click="submitForm">Submit</Button>
         </div>
       </div>
       <div v-else>
-        <div class="message">Summary</div>
-        <p>Name: {{ userInfo.name }}</p>
-        <p>Date Of Birth: {{ userInfo.dateOfBirth }}</p>
-        <p>Address: {{ userInfo.address }}</p>
-        <p>Country: {{ userInfo.country }}</p>
-        <p>ZIP Code: {{ userInfo.zipCode }}</p>
-        <p>Email Address: {{ userInfo.email }}</p>
-        <p>Phone number: {{ userInfo.phone }}</p>
-        <div class="buttons">
-          <Button class="reset-button" @click="resetStages">REORDER</Button>
+        <h1 class="content_header flex justify-content-center text-blue-700 text-5xl">SUMMARY</h1>
+        <p class="bottom-border">NAME: {{ userInfo.name }}</p>
+        <p class="bottom-border">PHONE: {{ userInfo.phone }}</p>
+        <p class="bottom-border">E-MAIL: {{ userInfo.email }}</p>
+        <p class="bottom-border" >ADDRESS: {{ userInfo.address }}</p>
+        <p class="bottom-border" >APPOINTMENT DATE: {{ userInfo.dateOfBirth }}</p>
+        <p>MESSAGE: </p>
+        <p class="sum-message">{{ userInfo.message }}</p>
+     
+        <div class="summary">
+          <Button class="reset-button" @click="confirmStages">Confirm</Button>
+          <a class="reorder-link" @click="resetStages">Change the appointment</a>
         </div>
       </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -103,10 +96,9 @@ export default {
         name: '',
         dateOfBirth: '',
         address: '',
-        country: '',
-        zipCode: '',
         email: '',
-        phone: ''
+        phone: '',
+        message:''
       }
     }
   },
@@ -133,7 +125,7 @@ export default {
 
 <style scoped>
 * {
-  color: black;
+  color: #303F9F;
 }
 
 #big-container {
@@ -223,13 +215,16 @@ export default {
   background-color: black;
 }
 .p-button {
+  justify-content: center;
   font-size: 16px;
   color: #fe7a36;
   background-color: white;
   border: 2px solid #fe7a36;
-  border-radius: 5px;
+  border-radius: 0px;
   padding: 10px 20px;
   cursor: pointer;
+  width: 120px;
+  height: 35px;
 }
 
 .p-button:hover {
@@ -256,16 +251,46 @@ export default {
 }
 
 .second-container > div:not(.card) {
-  background-color: #FEF9F7;
+  background-color: #fef9f7;
   padding: 20px;
   border-radius: 5px;
   margin-top: 20px;
 }
 
 .second-container > div:not(.card) p {
-  margin-bottom: 10px;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
   font-size: 16px;
-  color: black;
+  color: #545454;
+  font-weight: 600;
 }
 
+.bottom-border{
+  border-bottom: 1px solid #e2d9d9;
+}
+
+.text-5xl {
+  font-size: 2rem !important;
+  font-weight: 650;
+}
+
+.summary{
+  display: flex;
+  flex-direction: column;
+  padding-top: 20%;
+  align-items: center;
+}
+
+.sum-message{
+  background-color: #D9D9D9;
+  padding:20px;
+  margin-left:5%;
+  margin-right:5%;
+}
+
+.reorder-link {
+  color: grey;
+  text-decoration: underline;
+  cursor: pointer;
+}
 </style>
