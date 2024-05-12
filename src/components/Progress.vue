@@ -81,12 +81,13 @@
       </div>
       <div v-else>
         <div class="second-container">
-          <h1 class="content_header flex justify-co.1051000200 ntent-center text-grey-700 text-2xl">
+          <h1 class="content_header flex justify-content-center text-grey-700 text-2xl">
             THANK YOU FOR YOUR REQUEST, WE HAVE SENT THE CONFIRMATION LETTER TO YOUR EMAIL.
           </h1>
         </div>
         <div class="summary">
-          <Button class="reset-button">Return</Button>
+          <Button class="reset-button" @click="returnToHome">Return
+          </Button>
         </div>
       </div>
     </div>
@@ -138,7 +139,10 @@ export default {
     },
     confirmStages() {
       this.showConfirmation = false
-    }
+    },
+    returnToHome() {
+  window.location.href = '/';
+}
   }
 }
 </script>
@@ -229,13 +233,14 @@ export default {
   margin-top: 20px;
   color: white;
 }
+
 </style>
 
 <style>
 .p-progressbar-value {
   background-color: black;
 }
-.p-button {
+.p-button{
   justify-content: center;
   font-size: 16px;
   font-weight: 600;
@@ -248,6 +253,8 @@ export default {
   width: 120px;
   height: 35px;
 }
+
+
 
 .p-button:hover {
   background-color: #fe7a36;
