@@ -321,9 +321,11 @@ export default {
   font-weight: 600;
 }
 
+
+</style>
+<style>
 .p-progressbar .p-progressbar-value {
     border: 0 none;
-    margin: 0;
-    background: #1f2937;
+    background: black;
 }
 </style>
