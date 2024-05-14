@@ -27,6 +27,8 @@
           </div>
           <div v-else-if="step === 1">
             <p>AGENT LIST</p>
+            <Dropdown placeholder="Select an agent" class="w-5 custom-placeholder"></Dropdown>
+
             <div class="buttons">
               <Button class="back-button" @click="prevStep">< Back</Button>
               <Button class="next-button" @click="nextStep">Next ></Button>
@@ -97,12 +99,13 @@
 import ProgressBar from 'primevue/progressbar'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
-
+import Dropdown from 'primevue/dropdown'
 export default {
   components: {
     ProgressBar,
     Button,
-    InputText
+    InputText,
+    Dropdown
   },
   data() {
     return {
@@ -224,6 +227,12 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+}
+.custom-placeholder .p-dropdown-label:not(.p-placeholder-visible) {
+  display: block;
+  color: #303f9f;
+  font-weight: bold;
+  visibility: visible;
 }
 
 .summary-board {

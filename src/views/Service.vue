@@ -64,7 +64,7 @@
             <Dialog
               v-model:visible="visible"
               modal
-              class="custom-dialog"
+              class="custom-dialog custom-placeholder"
               :style="{ width: '35em', border: '10px' }"
             >
               <template #header>
