@@ -29,7 +29,33 @@
     </div>
 
     <div class="info" v-if="displayOrders">
-      <p style="color: black"></p>
+      <p style="color: black">
+        <DataTable :value="products" tableStyle="min-width: 50rem">
+          <template #header>
+            <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+              <span class="text-xl text-900 font-bold">Products</span>
+              <Button icon="pi pi-refresh" rounded raised />
+            </div>
+          </template>
+          <Column field="name" header="Name"></Column>
+          <Column header="Image"> </Column>
+          <Column field="price" header="Price">
+            <template #body="slotProps">
+              {{ formatCurrency(slotProps.data.price) }}
+            </template>
+          </Column>
+          <Column field="category" header="Category"></Column>
+          <Column field="rating" header="Reviews">
+            <template #body="slotProps">
+              <Rating :modelValue="slotProps.data.rating" readonly :cancel="false" />
+            </template>
+          </Column>
+
+          <template #footer>
+            In total there are {{ products ? products.length : 0 }} products.
+          </template>
+        </DataTable>
+      </p>
     </div>
 
     <div class="info" v-if="displayLogout">
@@ -72,6 +98,9 @@ export default {
       } else if (element === 'item_3') {
         this.displayLogout = true
       }
+    },
+    formatCurrency(value) {
+      return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
     }
   }
 }

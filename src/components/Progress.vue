@@ -3,17 +3,9 @@
     <div id="big-container" class="container-center">
       <div v-if="showConfirmation">
         <div class="container">
-          <div class="card">
-            <ProgressBar :value="progress[0]" class="custom-progress-bar"></ProgressBar>
-            <div class="topic">SELECT SERVICE</div>
-          </div>
-          <div class="card">
-            <ProgressBar :value="progress[1]" class="custom-progress-bar"></ProgressBar>
-            <div class="topic">CHOOSE AN AGENT</div>
-          </div>
-          <div class="card">
-            <ProgressBar :value="progress[2]" class="custom-progress-bar"></ProgressBar>
-            <div class="topic">PERSONAL INFORMATION</div>
+          <div class="card" v-for="(topic, index) in topics" :key="index">
+            <ProgressBar :value="progress[index]" class="custom-progress-bar"></ProgressBar>
+            <div class="topic">{{ topic }}</div>
           </div>
         </div>
 
@@ -27,7 +19,13 @@
           </div>
           <div v-else-if="step === 1">
             <p>AGENT LIST</p>
-            <Dropdown placeholder="Select an agent" class="w-5 custom-placeholder"></Dropdown>
+            <Dropdown
+              v-model="selectAgent"
+              :options="agents"
+              optionLabel="name"
+              placeholder="Select an agent"
+              class="w-5 custom-placeholder"
+            ></Dropdown>
 
             <div class="buttons">
               <Button class="back-button" @click="prevStep">< Back</Button>
@@ -75,8 +73,8 @@
             <p class="sum-message">{{ userInfo.message }}</p>
 
             <div class="summary">
+              <Button class="back-button" @click="prevStep">< Back</Button>
               <Button class="reset-button" @click="confirmStages">Confirm</Button>
-              <a class="reorder-link" @click="resetStages">Change the appointment</a>
             </div>
           </div>
         </div>
@@ -87,7 +85,7 @@
             THANK YOU FOR YOUR REQUEST, WE HAVE SENT THE RECEIPT TO YOUR EMAIL.
           </h1>
         </div>
-        <div class="summary">
+        <div class="summary flex justify-content-center">
           <Button class="reset-button" @click="returnToHome">Return </Button>
         </div>
       </div>
@@ -100,6 +98,8 @@ import ProgressBar from 'primevue/progressbar'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import Dropdown from 'primevue/dropdown'
+import agentsData from '@/services/agent'
+
 export default {
   components: {
     ProgressBar,
@@ -110,6 +110,7 @@ export default {
   data() {
     return {
       step: 0,
+      topics: ['SELECT SERVICE', 'CHOOSE AN AGENT', 'PERSONAL INFORMATION'],
       progress: [0, 0, 0],
       userInfo: {
         name: '',
@@ -119,21 +120,44 @@ export default {
         phone: '',
         message: ''
       },
-      showConfirmation: true
+      showConfirmation: true,
+      agents: agentsData,
+      selectAgent: null
     }
   },
   methods: {
     nextStep() {
-      this.progress[this.step] = 100
-      this.step++
+      if (this.step <= this.topics.length) {
+        this.startProgress(this.step)
+      }
     },
     prevStep() {
-      this.step--
-      this.progress[this.step] = 0
+      if (this.step > 0) {
+        clearInterval(this.interval)
+        this.step--
+        this.progress[this.step] = 0
+      }
+    },
+    startProgress(index) {
+      clearInterval(this.interval)
+      this.interval = setInterval(() => {
+        if (this.progress[index] < 100) {
+          this.progress[index] += 10
+        } else {
+          clearInterval(this.interval)
+          if (this.step === index) {
+            this.step++
+            console.log(this.step)
+          }
+        }
+      }, 130)
+    },
+    beforeDestroy() {
+      clearInterval(this.interval)
     },
     submitForm() {
-      this.progress = [100, 100, 100]
-      this.step++
+      console.log(this.step)
+      this.startProgress(this.step)
     },
     resetStages() {
       this.step = 0
@@ -144,6 +168,9 @@ export default {
     },
     returnToHome() {
       window.location.href = '/'
+    },
+    btnEdit() {
+      console.log(this.agents)
     }
   }
 }
@@ -205,6 +232,10 @@ export default {
   padding: 20px;
 }
 
+.second-container .p-dropdown {
+  margin-bottom: 20%;
+}
+
 .message {
   font-size: 16px;
   color: #545454;
@@ -240,7 +271,6 @@ export default {
   margin-top: 20px;
   color: white;
 }
-
 
 .p-button {
   justify-content: center;
@@ -305,8 +335,8 @@ export default {
 
 .summary {
   display: flex;
-  flex-direction: column;
   padding-top: 10%;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -328,12 +358,10 @@ export default {
   color: #545454;
   font-weight: 600;
 }
-
-
 </style>
 <style>
 .p-progressbar .p-progressbar-value {
-    border: 0 none;
-    background: black;
+  border: 0 none;
+  background: black;
 }
 </style>
