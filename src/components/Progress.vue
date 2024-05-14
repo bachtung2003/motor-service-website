@@ -232,9 +232,7 @@ export default {
   margin-top: 20px;
   color: white;
 }
-</style>
 
-<style>
 .p-progressbar-value {
   background-color: black;
 }
