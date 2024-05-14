@@ -20,7 +20,5 @@ export default {
 <style scoped>
 .Ubanner_wrapper {
   width: 100vw;
-  height: 100%;
-  margin-bottom: 5rem;
 }
 </style>

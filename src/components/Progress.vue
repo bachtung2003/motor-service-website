@@ -54,7 +54,7 @@
               </div>
               <div class="input-group">
                 <label for="dob">Appointment Date:</label>
-                <InputText id="dob" v-model="userInfo.dob" />
+                <InputText id="dob" v-model="userInfo.dateOfBirth" />
               </div>
             </div>
             <div class="buttons">
@@ -156,7 +156,6 @@ export default {
 
 #big-container {
   width: 1200px;
-  height: 600px;
   display: flex;
   padding-top: 50px;
   flex-direction: column;
@@ -241,12 +240,8 @@ export default {
   margin-top: 20px;
   color: white;
 }
-</style>
 
-<style>
-.p-progressbar-value {
-  background-color: black;
-}
+
 .p-button {
   justify-content: center;
   font-size: 16px;
@@ -332,5 +327,13 @@ export default {
   font-size: 1.5rem !important;
   color: #545454;
   font-weight: 600;
+}
+
+
+</style>
+<style>
+.p-progressbar .p-progressbar-value {
+    border: 0 none;
+    background: black;
 }
 </style>
