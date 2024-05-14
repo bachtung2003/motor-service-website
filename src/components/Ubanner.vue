@@ -19,7 +19,7 @@
           <p class="text-lg line-height-4">></p>
           <a href="#" class="text-lg">Set Appointment</a>
         </div>
-        <h1 class="about-header flex text-white text-6xl pt-1 text-left">USERNAME'S ACCOUNT</h1>
+        <h1 class="about-header flex text-white text-6xl pt-1 text-left">SET APPOINTMENT</h1>
         <p class="text-lg pt-2">Account ID: 001</p>
       </div>
     </div>

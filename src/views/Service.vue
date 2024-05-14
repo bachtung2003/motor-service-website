@@ -49,17 +49,64 @@
                 </div>
                 <div class="flex flex-column md:align-items-end gap-5">
                   <Button
+                    @click="showDialog(item)"
                     class="w-full h-3rem text-xl font-semibold text-blue-700 bg-white border-round-xs border-1 border-orange-500"
-                    >Ask For Price</Button
+                    >Make Order</Button
                   >
                   <Button
-                    class="text-xl h-3rem font-semibold text-white bg-orange-500 border-orange-500"
+                    class="text-xl w-full h-3rem font-semibold text-white bg-orange-500 border-orange-500"
                     @click="navigateRoute"
                     >Set Appointment</Button
                   >
                 </div>
               </div>
             </div>
+            <Dialog
+              v-model:visible="visible"
+              modal
+              class="custom-dialog"
+              :style="{ width: '35em', border: '10px' }"
+            >
+              <template #header>
+                <div class="w-full flex justify-content-center custom-border">
+                  <h2>{{ selectedService.label }}</h2>
+                </div>
+              </template>
+              <div
+                v-if="selectedService"
+                class="flex flex-wrap flex-column align-items-center justify-content-center w-full"
+              >
+                <Dropdown
+                  v-model="selectedBrand"
+                  :options="selectedService.prices"
+                  optionLabel="brand"
+                  placeholder="Select a brand"
+                  class="flex w-9"
+                />
+                <div
+                  v-if="selectedBrand"
+                  class="flex mt-6 surface-300 w-6 h-4rem text-xl align-items-center justify-content-center"
+                >
+                  <p class="font-semibold">Price: {{ selectedBrand.price }}</p>
+                </div>
+              </div>
+              <template #footer
+                ><div class="flex w-full justify-content-end justify-content-center gap-7">
+                  <Button
+                    type="button"
+                    label="Buy Now"
+                    severity="secondary"
+                    class="bg-white text-blue-500 border-orange-500 w-3"
+                    @click="visible = false"
+                  ></Button>
+                  <Button
+                    type="button"
+                    label="Add to cart"
+                    class="bg-orange-500 text-white border-orange-500 w-3"
+                    @click="visible = false"
+                  ></Button></div
+              ></template>
+            </Dialog>
           </template>
         </DataView>
       </div>
@@ -71,12 +118,16 @@
 import Breadcrumb from 'primevue/breadcrumb'
 import DataView from 'primevue/dataview'
 import Dropdown from 'primevue/dropdown'
+import Dialog from 'primevue/dialog'
+import Button from 'primevue/button'
 import servicesData from '@/services/data'
 export default {
   components: {
     Breadcrumb,
     DataView,
-    Dropdown
+    Dropdown,
+    Dialog,
+    Button
   },
   data() {
     return {
@@ -89,7 +140,10 @@ export default {
         { label: 'Car Service', value: 'car' },
         { label: 'Tire Service', value: 'tire' }
       ],
-      selectedFilter: ''
+      selectedFilter: '',
+      visible: false,
+      selectedService: null,
+      selectedBrand: null
     }
   },
   mounted() {
@@ -120,6 +174,11 @@ export default {
     }
   },
   methods: {
+    showDialog(service) {
+      this.selectedService = service
+      this.selectedBrand = null
+      this.visible = true
+    },
     navigateRoute() {
       this.$router.push('/appointment')
       window.scrollTo(0, 0)
@@ -187,5 +246,28 @@ export default {
 
 .section2-wrapper div .about2-button span {
   color: #fe7a36;
+}
+
+.custom-placeholder .p-dropdown-label:not(.p-placeholder-visible) {
+  display: block;
+  color: #303f9f;
+  font-weight: bold;
+  visibility: visible;
+}
+
+.custom-dialog .p-dialog-header {
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
+}
+
+.custom-dialog .p-dialog-footer {
+  display: flex;
+  justify-content: center;
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.custom-dialog {
+  box-shadow: none;
 }
 </style>

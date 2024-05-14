@@ -29,7 +29,7 @@
     </div>
 
     <div class="info" v-if="displayOrders">
-      <p style="color: black">SHOW LIST OF ORDERS</p>
+      <p style="color: black"></p>
     </div>
 
     <div class="info" v-if="displayLogout">
@@ -41,11 +41,13 @@
 <script>
 import Account from './Account.vue'
 import Breadcrumb from 'primevue/breadcrumb'
+import DataTable from 'primevue/datatable'
 
 export default {
   components: {
     Account,
-    Breadcrumb
+    Breadcrumb,
+    DataTable
   },
   data() {
     return {

@@ -5,20 +5,27 @@
       <a href="/">AHAMAY</a>
     </div>
     <div class="container mt-4">
-      <TabMenu :model="navigation" class="navigation mr-2" />
-      <Button @click="menuVisible = !menuVisible" rounded>
+      <TabMenu :model="navigation" class="navigation w-full" />
+      <Button
+        v-if="accouuntVisible"
+        @click="menuVisible = !menuVisible"
+        rounded
+        class="account-menu"
+      >
         <div class="flex w-full justify-content-center">
           <i class="pi pi-user" style="font-size: 2rem; color: black"></i>
         </div>
       </Button>
-      <!-- <Button label="Login" @click="showDialog = true" /> -->
+      <Button v-if="loginvisible" label="Login" @click="showDialog = true" class="login-menu" />
       <Menu v-if="menuVisible" class="card absolute right-0 border-transparent" :model="item" />
       <Dialog
         ref="dialog"
         v-model:visible="showDialog"
         modal
         header="Login"
-        :style="{ width: '25rem' }"
+        :style="{ width: '30rem' }"
+        :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+        :dismissableMask="true"
       >
         <div class="flex align-items-center justify-content-center">
           <img :src="`/src/assets/img/logo.png`" style="width: 90px" />
@@ -43,7 +50,7 @@
             class="w-4rem bg-orange-500 border-orange-500"
             type="button"
             label="Login"
-            @click="visible = false"
+            @click="toggleLogin()"
           ></Button>
         </div>
         <div>
@@ -76,6 +83,8 @@ export default {
   },
   data: () => ({
     menuVisible: false,
+    accouuntVisible: false,
+    loginvisible: true,
     showDialog: false, // Add this line
     password: {
       show: false,
@@ -111,6 +120,11 @@ export default {
   methods: {
     toggleMenu() {
       this.menuVisible = !this.menuVisible
+    },
+    toggleLogin() {
+      this.showDialog = false
+      this.loginvisible = !this.loginvisible
+      this.accouuntVisible = !this.accouuntVisible
     }
   }
 }
@@ -140,7 +154,7 @@ export default {
   display: flex;
   left: 0;
   top: 0%;
-  justify-content: space-between;
+  justify-content: space-around;
   background: #ffff;
   //position: fixed;
   //z-index: 99;
@@ -148,17 +162,27 @@ export default {
 
 .container {
   display: flex;
-  padding-right: 4rem;
+  width: 40%;
+  padding-right: 4%;
   right: 0;
 }
 
-.container .p-button {
+.container .account-menu {
   margin-top: 18px;
   height: 40px;
   width: 40px;
   border-radius: 20px;
   background: #ffffff;
   border: 3px solid black;
+}
+
+.container .login-menu {
+  margin-top: 18px;
+  margin-left: 10px;
+  height: 40px;
+  width: 25%;
+  border-radius: 20px;
+  background-color: #fe7a36;
 }
 
 .container .p-button:focus {
@@ -226,12 +250,12 @@ export default {
   padding: 20px 148px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   font-weight: 600;
   list-style-type: none;
   font-size: 1.2rem;
   border: none;
-  padding-left: 0;
+  padding-left: 0%;
   padding-right: 0;
 }
 
