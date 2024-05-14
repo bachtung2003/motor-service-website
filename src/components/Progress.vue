@@ -52,7 +52,7 @@
               </div>
               <div class="input-group">
                 <label for="dob">Appointment Date:</label>
-                <InputText id="dob" v-model="userInfo.dob" />
+                <InputText id="dob" v-model="userInfo.dateOfBirth" />
               </div>
             </div>
             <div class="buttons">
