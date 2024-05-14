@@ -233,9 +233,7 @@ export default {
   color: white;
 }
 
-.p-progressbar-value {
-  background-color: black;
-}
+
 .p-button {
   justify-content: center;
   font-size: 16px;
@@ -321,5 +319,11 @@ export default {
   font-size: 1.5rem !important;
   color: #545454;
   font-weight: 600;
+}
+
+.p-progressbar .p-progressbar-value {
+    border: 0 none;
+    margin: 0;
+    background: #1f2937;
 }
 </style>
