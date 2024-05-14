@@ -58,19 +58,19 @@ export default {
 .footer-subcribe-content {
   position: relative;
   display: block;
-  width: 30vw;
+  width: 28vw;
 }
 
 .footer-subcribe-content a {
   font-weight: 500;
-  font-size: 2vw;
+  font-size: clamp(0px, 2vw, 30px);;
   color: #3e3e3e;
   font-style: normal;
   color: #ffff;
 }
 
 .footer-subcribe-content p {
-  font-size: 1.5vw;
+  font-size: clamp(0px, 1.5vw, 20px);;
   color: #3e3e3e;
   font-style: normal;
   font-weight: normal;
@@ -84,82 +84,12 @@ export default {
 
 .footer-email-container .p-button {
   height: 40px;
-  width: 10vw;
+  width: 130px;
   left: 5%;
   border-radius: 5px;
   background: #000000;
   color: #ffff;
   border: 1px solid #0000;
-  font-size: 17px;
+  font-weight: 900;
 }
-
-/* @media (min-width: 1500px) {
-  #toolbar-wrapper {
-    position: relative;
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    left: 0;
-    bottom: -25%;
-    padding: 20px 148px;
-    margin-top: 2rem;
-    background: #fe7a36;
-  }
-
-  .footer-email-container .p-button {
-    margin-top: 8px;
-    height: 50px;
-    width: 160px;
-    left: 40%;
-    border-radius: 5px;
-    background: #000000;
-    color: #ffff;
-    border: 1px solid #0000;
-    font-size: 17px;
-  }
-}
-@media (min-width: 2000px) {
-  #toolbar-wrapper {
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    left: 0;
-    bottom: -12%;
-    padding: 20px 148px;
-    margin-top: 5rem;
-    background: #fe7a36;
-  }
-  .footer-subcribe-content {
-    position: relative;
-    display: block;
-    gap: 10px;
-    width: 600px !important;
-    height: 75px;
-  }
-
-  .footer-email-container .p-button {
-    margin-top: 8px;
-    height: 50px;
-    width: 160px;
-    left: 80%;
-    border-radius: 5px;
-    background: #000000;
-    color: #ffff;
-    border: 1px solid #0000;
-    font-size: 17px;
-  }
-}
-
-@media (max-width: 1200px) {
-  #toolbar-wrapper {
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    left: 0;
-    bottom: -30%;
-    padding: 20px 148px;
-    margin-top: 5rem;
-    background: #fe7a36;
-  }
-} */
 </style>

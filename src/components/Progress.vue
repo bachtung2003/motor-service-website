@@ -153,7 +153,6 @@ export default {
 
 #big-container {
   width: 1200px;
-  height: 600px;
   display: flex;
   padding-top: 50px;
   flex-direction: column;
