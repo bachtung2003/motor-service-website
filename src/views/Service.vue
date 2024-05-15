@@ -103,7 +103,7 @@
                     type="button"
                     label="Add to cart"
                     class="bg-orange-500 text-white border-orange-500 w-3"
-                    @click="visible = false"
+                    @click="addToCart"
                   ></Button></div
               ></template>
             </Dialog>
@@ -121,6 +121,7 @@ import Dropdown from 'primevue/dropdown'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import servicesData from '@/services/data'
+import EventBus from '@/utils/Eventbus'
 export default {
   components: {
     Breadcrumb,
@@ -178,6 +179,17 @@ export default {
       this.selectedService = service
       this.selectedBrand = null
       this.visible = true
+    },
+    addToCart() {
+      if (this.selectedBrand) {
+        const productToAdd = {
+          ...this.selectedService,
+          selectedBrand: this.selectedBrand
+        }
+        EventBus.emit('add-to-cart', productToAdd)
+        this.visible = false
+        console.log(productToAdd)
+      }
     },
     navigateRoute() {
       this.$router.push('/appointment')

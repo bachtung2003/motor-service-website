@@ -29,33 +29,31 @@
     </div>
 
     <div class="info" v-if="displayOrders">
-      <p style="color: black">
-        <DataTable :value="products" tableStyle="min-width: 50rem">
-          <template #header>
-            <div class="flex flex-wrap align-items-center justify-content-between gap-2">
-              <span class="text-xl text-900 font-bold">Products</span>
-              <Button icon="pi pi-refresh" rounded raised />
-            </div>
+      <DataTable :value="products">
+        <template #header>
+          <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+            <span class="text-xl text-900 font-bold">Products</span>
+            <button @click="editBtn()">Edit</button>
+          </div>
+        </template>
+        <Column field="label" header="Name"></Column>
+        <Column field="image" header="Image">
+          <template #body="slotProps">
+            <img :src="slotProps.data.image" alt="Product Image" width="50" />
           </template>
-          <Column field="name" header="Name"></Column>
-          <Column header="Image"> </Column>
-          <Column field="price" header="Price">
-            <template #body="slotProps">
-              {{ formatCurrency(slotProps.data.price) }}
-            </template>
-          </Column>
-          <Column field="category" header="Category"></Column>
-          <Column field="rating" header="Reviews">
-            <template #body="slotProps">
-              <Rating :modelValue="slotProps.data.rating" readonly :cancel="false" />
-            </template>
-          </Column>
-
-          <template #footer>
-            In total there are {{ products ? products.length : 0 }} products.
+        </Column>
+        <Column field="category" header="Category"></Column>
+        <Column field="rating" header="Reviews">
+          <template #body="slotProps">
+            <Rating :modelValue="slotProps.data.rating" readonly :cancel="false" />
           </template>
-        </DataTable>
-      </p>
+        </Column>
+        <Column field="selectedBrand.brand" header="Brand"></Column>
+        <Column field="selectedBrand.price" header="Price"></Column>
+        <template #footer>
+          In total there are {{ products ? products.length : 0 }} products.
+        </template>
+      </DataTable>
     </div>
 
     <div class="info" v-if="displayLogout">
@@ -68,19 +66,25 @@
 import Account from './Account.vue'
 import Breadcrumb from 'primevue/breadcrumb'
 import DataTable from 'primevue/datatable'
-
+import Column from 'primevue/column'
+import Rating from 'primevue/rating'
+import servicesData from '../services/data'
+import EventBus from '@/utils/Eventbus'
 export default {
   components: {
     Account,
     Breadcrumb,
-    DataTable
+    DataTable,
+    Column,
+    Rating
   },
   data() {
     return {
       displayAccount: true,
       displayOrders: false,
       displayLogout: false,
-      activeElement: 'item_1'
+      activeElement: 'item_1',
+      products: servicesData
     }
   },
   methods: {
@@ -101,7 +105,19 @@ export default {
     },
     formatCurrency(value) {
       return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    },
+    editBtn() {
+      console.log(this.products)
+    },
+    addProductToCart(product) {
+      this.products.push(product)
     }
+  },
+  created() {
+    EventBus.on('add-to-cart', this.addProductToCart)
+  },
+  beforeDestroy() {
+    EventBus.off('add-to-cart', this.addProductToCart)
   }
 }
 </script>
