@@ -1,7 +1,7 @@
 <template>
-  <div class="Ubanner_wrapper">
+  <div class="Ubanner_wrapper" :class="[{ dark: isDarkMode }]">
     <Ubanner class="" :types="2"></Ubanner>
-    <List_Account></List_Account>
+    <List_Account :class="[{ dark: isDarkMode }]" :isDarkMode="isDarkMode"></List_Account>
   </div>
 </template>
 
@@ -13,6 +13,12 @@ export default {
   components: {
     Ubanner,
     List_Account
+  },
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      required: true
+    }
   }
 }
 </script>

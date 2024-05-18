@@ -1,16 +1,16 @@
 <template>
-  <div style="display: block">
+  <div style="display: block" :class="[{ dark: isDarkMode }]">
     <div class="s-wrapper flex" :class="{ reveal: isSectionVisible(1) }">
       <Section class="" :types="1"></Section>
     </div>
     <div class="service-wrap flex mb-8" :class="{ reveal: isServiceVisible }">
-      <Service class="flex" />
+      <Service :class="['flex', { dark: isDarkMode }]" :isDarkMode="isDarkMode" />
     </div>
     <div class="s-wrapper flex" :class="{ reveal: isSectionVisible(2) }">
-      <Section class="" :types="2"></Section>
+      <Section :class="[{ dark: isDarkMode }]" :isDarkMode="isDarkMode" :types="2"></Section>
     </div>
     <div class="s-wrapper flex" :class="{ reveal: isSectionVisible(3) }">
-      <Section class="" :types="3"></Section>
+      <Section :class="[{ dark: isDarkMode }]" :isDarkMode="isDarkMode" :types="3"></Section>
     </div>
   </div>
 </template>
@@ -35,6 +35,12 @@ export default {
     return {
       isServiceVisible: false,
       isSection1Visible: false
+    }
+  },
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      required: true
     }
   },
   methods: {

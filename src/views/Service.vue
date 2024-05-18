@@ -1,15 +1,23 @@
 <template>
-  <div class="section2-wrapper">
+  <div :class="['section2-wrapper', { dark: isDarkMode }]">
     <div class="image2" :style="backgroundImageStyle2">
       <p class="flex relative justify-content-center text-xs">GREAT CAR SERVICE</p>
       <h1 class="about2-header flex justify-content-center text-white text-5xl text-center">
         Premium car service matched with great workmanship. Best services you can count on
       </h1>
     </div>
-    <div class="services-content">
-      <Breadcrumb :home="home" :model="items" class="pl-7"></Breadcrumb>
+    <div class="services-content" :class="[{ dark: isDarkMode }]">
+      <Breadcrumb
+        :home="home"
+        :model="items"
+        class="pl-7"
+        :class="{ dark: isDarkMode }"
+      ></Breadcrumb>
       <div>
-        <h1 class="content_header flex justify-content-center text-blue-700 text-5xl">
+        <h1
+          class="content-header flex justify-content-center text-blue-700 text-5xl"
+          :class="[{ dark: isDarkMode }]"
+        >
           All SERVICES
         </h1>
         <DataView :value="filteredServices">
@@ -24,11 +32,13 @@
           <template #list="slotProps">
             <div v-for="(item, index) in slotProps.items" :key="index">
               <div
-                class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 border-1 mt-2"
+                class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 border-1 p-7"
+                :style="{ backgroundColor: isDarkMode ? '#212121' : 'initial' }"
               >
                 <div class="md:w-10rem relative">
                   <img
                     class="block xl:block mx-auto border-round w-full"
+                    :style="{ border: isDarkMode ? '1px solid white' : 'initial' }"
                     :src="item.image"
                     :alt="item.name"
                   />
@@ -40,10 +50,17 @@
                     class="flex flex-row md:flex-column justify-content-between align-items-start gap-2"
                   >
                     <div>
-                      <div class="text-5xl font-medium text-900 mt-2">{{ item.label }}</div>
-                      <span class="font-medium text-secondary text-base">{{
-                        item.description
-                      }}</span>
+                      <div
+                        class="text-5xl font-medium"
+                        :style="{ color: isDarkMode ? 'white' : 'initial' }"
+                      >
+                        {{ item.label }}
+                      </div>
+                      <span
+                        class="font-medium text-secondary text-base"
+                        :style="{ color: isDarkMode ? 'white' : 'initial' }"
+                        >{{ item.description }}</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -54,7 +71,8 @@
                     >Make Order</Button
                   >
                   <Button
-                    class="text-xl w-full h-3rem font-semibold text-white bg-orange-500 border-orange-500"
+                    class="text-xl w-full h-3rem font-semibold text-white bg-orange-500"
+                    :style="{ border: isDarkMode ? '1px solid white' : 'initial' }"
                     @click="navigateRoute"
                     >Set Appointment</Button
                   >
@@ -130,6 +148,12 @@ export default {
     Dialog,
     Button
   },
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       imgURL2: '/src/assets/img/banner2.png',
@@ -174,6 +198,7 @@ export default {
       }
     }
   },
+  inject: ['isDarkMode', 'toggleTheme'],
   methods: {
     showDialog(service) {
       this.selectedService = service
@@ -200,6 +225,11 @@ export default {
 </script>
 
 <style>
+.section2-wrapper.dark {
+  background-color: #212121;
+  color: #ffffff;
+}
+
 .image2 {
   height: 19rem;
 }
@@ -213,10 +243,25 @@ export default {
   border: none;
 }
 
+.p-breadcrumb.dark {
+  background-color: #212121;
+}
+
 .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link:hover {
   background-color: #fe7a36;
 }
 
+.p-breadcrumb.dark .p-breadcrumb-list .p-menuitem-icon {
+  color: white !important;
+}
+
+.p-breadcrumb.dark .p-breadcrumb-list li .p-menuitem-text {
+  color: white !important;
+}
+
+.p-breadcrumb.dark .p-breadcrumb-list li.p-menuitem-separator {
+  color: white !important;
+}
 .p-dataview {
   margin: 0 10rem 0 10rem;
 }
@@ -224,6 +269,7 @@ export default {
 .p-dataview-header {
   background-color: #fe7a36;
   margin-bottom: 3rem;
+  border: none;
 }
 .image2 p {
   top: 50px;
@@ -277,6 +323,10 @@ export default {
   justify-content: center;
   border-bottom-left-radius: 30px !important;
   border-bottom-right-radius: 30px !important;
+}
+
+.content-header.dark {
+  color: #fe7a36 !important;
 }
 
 .custom-dialog {

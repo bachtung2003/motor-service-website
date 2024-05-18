@@ -1,5 +1,6 @@
 const servicesData = [
   {
+    id: 1,
     label: 'Brake',
     description:
       "Ensure your vehicle's braking system is functioning optimally with our brake maintenance service. We inspect brake pads, rotors, and fluid levels to keep you safe on the road.",
@@ -13,6 +14,7 @@ const servicesData = [
     ]
   },
   {
+    id: 2,
     label: 'Oil Change',
     description:
       'Keep your engine running smoothly with our oil change service. We replace old oil with high-quality lubricants and replace the oil filter for optimal engine performance.',
@@ -26,6 +28,7 @@ const servicesData = [
     ]
   },
   {
+    id: 3,
     label: 'Rack Housing',
     description:
       "Maintain your vehicle's steering system with our rack housing service. We inspect and repair the rack and pinion assembly to ensure precise steering control.",

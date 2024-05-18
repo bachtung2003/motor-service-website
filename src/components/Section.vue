@@ -33,19 +33,41 @@
         />
       </div>
     </div>
-    <div v-if="isSection3()" id="contact" class="section3-wrapper">
-      <div class="image3 flex" :style="backgroundImageStyle3"></div>
-      <div class="contact-container flex flex-column surface-200">
-        <h2 class="pb-5 text-4xl font-medium">Book a trusted mechanic</h2>
-        <p class="font-light text-lg">Call us now</p>
+    <div v-if="isSection3()" id="contact" class="section3-wrapper" :class="[{ dark: isDarkmode }]">
+      <div
+        class="image3 flex"
+        :style="isDarkMode ? backgroundImageStyle3Dark : backgroundImageStyle3"
+      ></div>
+      <div
+        class="contact-container flex flex-column"
+        :style="{ backgroundColor: isDarkMode ? '#3b3a3a' : '#e5e7eb' }"
+      >
+        <h2 class="pb-5 text-4xl font-medium" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+          Book a trusted mechanic
+        </h2>
+        <p class="font-light text-lg" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+          Call us now
+        </p>
         <div class="flex pb-4 align-items-center">
-          <i class="pi pi-phone flex align-items-center pr-3 text-6xl"></i>
-          <h1 class="font-medium text-6xl">+1(12) 366 411 4999</h1>
+          <i
+            class="pi pi-phone flex align-items-center pr-3 text-6xl"
+            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+          ></i>
+          <h1 class="font-medium text-6xl" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+            +1(12) 366 411 4999
+          </h1>
         </div>
-        <p class="font-light text-lg">Or Email us</p>
+        <p class="font-light text-lg" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+          Or Email us
+        </p>
         <div class="flex align-items-center">
-          <i class="pi pi-envelope flex align-items-center pr-3 text-6xl"></i>
-          <h1 class="font-medium text-6xl">support@ahamay.vn</h1>
+          <i
+            class="pi pi-envelope flex align-items-center pr-3 text-6xl"
+            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+          ></i>
+          <h1 class="font-medium text-6xl" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+            support@ahamay.vn
+          </h1>
         </div>
       </div>
     </div>
@@ -54,7 +76,10 @@
   <div v-if="isAboutPage()">
     <div v-if="isSection1()" class="section-wrapper">
       <div class="image4" :style="backgroundImageStyle4">
-        <div class="container-ubanner">
+        <div
+          class="container-ubanner"
+          :style="{ borderBottom: isDarkMode ? '1px solid white' : 'initial' }"
+        >
           <Breadcrumb :home="home" :model="items" class=""></Breadcrumb>
           <div class="content-ubanner">
             Passionate
@@ -63,7 +88,10 @@
           <div class="img-cut-off"></div>
         </div>
         <div class="story-content w-full grid pt-7 absolute">
-          <div class="col pl-7 text-xl line-height-3 custom-letter-spacing">
+          <div
+            class="col pl-7 text-xl line-height-3 custom-letter-spacing"
+            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+          >
             Experience the difference with Ahamay and discover why we're the preferred choice for
             discerning drivers who demand nothing but the best. Trust us to keep you moving forward
             with confidence, reliability, and peace of mind. When it comes to automotive care,
@@ -71,6 +99,7 @@
           </div>
           <div
             class="col flex flex-column-reverse bottom-0 ml-2 text-lg line-height-3 pr-6 custom-letter-spacing"
+            :style="{ color: isDarkMode ? 'white' : 'initial' }"
           >
             We understand that your vehicle is an integral part of your daily life. That's why our
             team of dedicated professionals is committed to delivering excellence at every turn.
@@ -81,19 +110,28 @@
     <div v-if="isSection2()" class="section2-wrapper-about">
       <div class="image5" :style="backgroundImageStyle5"></div>
       <div class="grid h-full mt-6">
-        <div class="col text-5xl flex align-items-center font-medium">
+        <div
+          class="col text-5xl flex align-items-center font-medium"
+          :style="{ color: isDarkMode ? 'white' : 'initial' }"
+        >
           "Drive with confidence, trust Ahamay to keep you safe on the road."
         </div>
         <div class="rating-wrapper grid col pl-7">
           <div class="rating-header text-6xl w-full p-0 text-orange-500">Numbers</div>
           <div class="grid w-full">
-            <div class="col text-2xl font-medium">
+            <div
+              class="col text-2xl font-medium"
+              :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            >
               Customer satisfaction rate
               <div class="pt-3 text-orange-500 text-5xl p-0 line-height-3 custom-letter-spacing">
                 97.5%
               </div>
             </div>
-            <div class="col text-2xl font-medium">
+            <div
+              class="col text-2xl font-medium"
+              :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            >
               Task received
               <div class="pt-3 text-orange-500 text-5xl p-0 line-height-3 custom-letter-spacing">
                 100.000+
@@ -101,13 +139,19 @@
             </div>
           </div>
           <div class="grid w-full">
-            <div class="col text-2xl font-medium">
+            <div
+              class="col text-2xl font-medium"
+              :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            >
               Loyal customers
               <div class="pt-3 text-orange-500 text-5xl p-0 line-height-3 custom-letter-spacing">
                 50,000+
               </div>
             </div>
-            <div class="col text-2xl font-medium">
+            <div
+              class="col text-2xl font-medium"
+              :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            >
               Customer rentation rate
               <div class="pt-3 text-orange-500 text-5xl p-0 line-height-3 custom-letter-spacing">
                 86.3%
@@ -120,11 +164,19 @@
     <div v-if="isSection3()" class="section3-wrapper-about">
       <div class="image6 flex" :style="backgroundImageStyle6"></div>
       <div>
-        <div class="flex justify-content-center mt-8 text-3xl text-center">
+        <div
+          class="flex justify-content-center mt-8 text-3xl text-center"
+          :style="{ color: isDarkMode ? 'white' : 'initial' }"
+        >
           “We don't just fix cars; we build trust and peace of mind with every mile you drive. Join
           us on the journey towards automotive excellence!”
         </div>
-        <div class="flex justify-content-center mt-3 text-3xl text-center">- AHAMAY -</div>
+        <div
+          class="flex justify-content-center mt-3 text-3xl text-center"
+          :style="{ color: isDarkMode ? 'white' : 'initial' }"
+        >
+          - AHAMAY -
+        </div>
       </div>
     </div>
   </div>
@@ -135,7 +187,11 @@ import Breadcrumb from 'primevue/breadcrumb'
 import Button from 'primevue/button'
 export default {
   props: {
-    types: Number
+    types: Number,
+    isDarkMode: {
+      type: Boolean,
+      required: true
+    }
   },
   components: {
     Button,
@@ -146,6 +202,7 @@ export default {
       imgURL: '/src/assets/img/bannerbg.png',
       imgURL2: '/src/assets/img/banner2.png',
       imgURL3: '/src/assets/img/logo.png',
+      imgURL3_dark: '/src/assets/img/logo-dark.png',
       imgURL4: '/src/assets/img/ubanner_about.png',
       imgURL5: '/src/assets/img/section_about-2.png',
       imgURL6: '/src/assets/img/section_about-3.png',
@@ -171,6 +228,12 @@ export default {
     backgroundImageStyle3() {
       return {
         backgroundImage: `url(${this.imgURL3})`,
+        backgroundSize: 'contain'
+      }
+    },
+    backgroundImageStyle3Dark() {
+      return {
+        backgroundImage: `url(${this.imgURL3_dark})`,
         backgroundSize: 'contain'
       }
     },
@@ -297,6 +360,10 @@ export default {
 
 .contact-container {
   padding: 2% 5% 2% 1%;
+}
+
+.contact .dark {
+  background-color: #212121;
 }
 
 .section2-wrapper .info-wrapper {

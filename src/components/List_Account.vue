@@ -5,6 +5,7 @@
         class="element item_1"
         v-on:click="setActiveElement('item_1')"
         v-bind:class="{ active: activeElement === 'item_1' }"
+        :style="{ color: isDarkMode ? 'white' : 'initial' }"
       >
         Account details
       </div>
@@ -12,6 +13,7 @@
         class="element item_2"
         v-on:click="setActiveElement('item_2')"
         v-bind:class="{ active: activeElement === 'item_2' }"
+        :style="{ color: isDarkMode ? 'white' : 'initial' }"
       >
         My Orders
       </div>
@@ -19,6 +21,7 @@
         class="element item_3"
         v-on:click="setActiveElement('item_3')"
         v-bind:class="{ active: activeElement === 'item_3' }"
+        :style="{ color: isDarkMode ? 'white' : 'initial' }"
       >
         Logout
       </div>
@@ -85,6 +88,12 @@ export default {
       displayLogout: false,
       activeElement: 'item_1',
       products: servicesData
+    }
+  },
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      require: true
     }
   },
   methods: {
