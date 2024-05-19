@@ -16,14 +16,14 @@
         >
           Tire and wheel
         </h2>
-        <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+        <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'black' : 'initial' }">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua.Loremut labore et dolore magna aliqua.Lorem
         </p>
         <div class="flex justify-content-center align-items-center mt-4">
           <p
             class="pr-2 font-semibold text-1xl"
-            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            :style="{ color: isDarkMode ? 'black' : 'initial' }"
           >
             Read More
           </p>
@@ -44,14 +44,14 @@
         >
           Tire and wheel
         </h2>
-        <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+        <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'black' : 'initial' }">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua.Loremut labore et dolore magna aliqua.Lorem
         </p>
         <div class="flex justify-content-center align-items-center mt-4">
           <p
             class="pr-2 font-semibold text-1xl"
-            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            :style="{ color: isDarkMode ? 'black' : 'initial' }"
           >
             Read More
           </p>
@@ -71,14 +71,14 @@
         >
           Tire and wheel
         </h2>
-        <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+        <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'black' : 'initial' }">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua.Loremut labore et dolore magna aliqua.Lorem
         </p>
         <div class="flex justify-content-center align-items-center mt-4">
           <p
             class="pr-2 font-semibold text-1xl"
-            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            :style="{ color: isDarkMode ? 'black' : 'initial' }"
           >
             Read More
           </p>
@@ -111,7 +111,7 @@ export default {
 }
 
 .service-wrapper.dark {
-  background-color: #3b3a3a;
+  background-color: #535151;
   color: #ffffff;
 }
 
@@ -122,16 +122,16 @@ export default {
 }
 .service-wrapper h1.dark {
   color: white;
-  background-color: #3b3a3a;
+  background-color: #535151;
 }
 
 .service-wrapper p.dark {
   color: #d1d1d1;
-  background-color: #3b3a3a;
+  background-color: #535151;
 }
 
 .service-wrapper .service-box.dark {
-  background-color: #fe7a36 !important;
+  background-color: #b3b2b2 !important;
   color: #f1f1f1;
 }
 
@@ -162,8 +162,8 @@ export default {
 }
 
 .service-box h2.dark {
-  color: white !important;
-  background: #fe7a36;
+  color: black !important;
+  background: #b3b2b2;
 }
 @media (min-width: 1500px) {
   .service-wrapper div .service-box {

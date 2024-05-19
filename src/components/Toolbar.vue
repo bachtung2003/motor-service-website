@@ -1,53 +1,63 @@
 <template>
-  <div id="toolbar-wrapper">
-    <div class="logo mb-4 mt-4 ml-0 left-0">
-      <img class="logo-image" :src="`/src/assets/img/logo.png`" style="width: 32px" />
-      <a href="/">AHAMAY</a>
+  <div :class="['toolbar-wrapper', { 'dark-toolbar': isDarkMode }]">
+    <div :class="['logo mb-4 mt-4 ml-0 left-0', { 'dark-logo': isDarkMode }]">
+      <img
+        :src="isDarkMode ? '/src/assets/img/logo-dark.png' : '/src/assets/img/logo.png'"
+        class="logo-image"
+        style="transition: filter 0.001ms"
+        @load="handleLoad"
+      />
+      <a href="/" :class="{ 'dark-text': isDarkMode }">AHAMAY</a>
     </div>
     <div class="container mt-4">
-      <TabMenu :model="navigation" class="navigation w-full" />
+      <TabMenu :model="navigation" :class="['navigation w-full', { 'dark-tabmenu': isDarkMode }]" />
       <Button
-        v-if="accountVisible"
+        v-if="accouuntVisible"
         @click="menuVisible = !menuVisible"
         rounded
-        class="account-menu"
+        :class="['account-menu', { 'dark-button': isDarkMode }]"
       >
         <div class="flex w-full justify-content-center">
-          <i class="pi pi-user" style="font-size: 2rem; color: black"></i>
+          <i
+            class="pi pi-user"
+            :style="{ color: isDarkMode ? 'white' : 'black' }"
+            style="font-size: 2rem"
+          ></i>
         </div>
       </Button>
-      <Button v-if="loginVisible" label="Login" @click="showDialog = true" class="login-menu" />
+      <Button
+        v-if="loginvisible"
+        label="Login"
+        @click="showDialog = true"
+        :class="['login-menu', { 'dark-button': isDarkMode }]"
+      />
       <Menu v-if="menuVisible" class="card absolute right-0 border-transparent" :model="item" />
       <Dialog
         ref="dialog"
         v-model:visible="showDialog"
         modal
         header="Login"
-        :style="{ width: '30rem' }"
+        :style="{ width: '30rem', backgroundColor: '#212121' }"
         :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
         :dismissableMask="true"
       >
         <div class="flex align-items-center justify-content-center">
-          <img :src="`/src/assets/img/logo.png`" style="width: 90px" />
+          <img
+            :src="isDarkMode ? '/src/assets/img/logo-dark.png' : '/src/assets/img/logo.png'"
+            style="width: 90px"
+          />
         </div>
         <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText
-            v-model="username"
-            id="username"
-            class="flex h-2rem mt-3"
-            autocomplete="off"
-          />
-          <label class="left-auto text-lg" for="username">Username</label>
+          <InputText id="username" class="flex h-2rem mt-3" autocomplete="off" />
+          <label :class="['left-auto text-lg', { 'dark-text': isDarkMode }]" for="username"
+            >Username</label
+          >
         </FloatLabel>
         <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText
-            v-model="password"
-            id="password"
-            type="password"
-            class="flex h-2rem mt-3"
-            autocomplete="off"
-          />
-          <label class="left-auto text-lg" for="password">Password</label>
+          <InputText id="password" class="flex h-2rem mt-3" autocomplete="off" />
+          <label :class="['left-auto text-lg', { 'dark-text': isDarkMode }]" for="password"
+            >Password</label
+          >
         </FloatLabel>
         <div class="flex justify-content-end gap-3 h-2rem">
           <Button
@@ -56,77 +66,22 @@
             label="Cancel"
             severity="secondary"
             @click="showDialog = false"
+            :class="{ 'dark-button': isDarkMode }"
           ></Button>
           <Button
             class="w-4rem bg-orange-500 border-orange-500"
             type="button"
             label="Login"
-            @click="handleLogin"
+            @click="toggleLogin()"
+            :class="{ 'dark-button': isDarkMode }"
           ></Button>
         </div>
         <div>
           <small class="flex justify-content-end mt-1">
-            <a href="#" @click.prevent="showRegisterDialog = true" class="text-orange-500">
-              Don't have an account? Click me!
-            </a>
+            <a href="#" :class="['text-orange-500', { 'dark-link': isDarkMode }]"
+              >Doesn't have account? Click me!</a
+            >
           </small>
-        </div>
-      </Dialog>
-      <Dialog
-        ref="registerDialog"
-        v-model:visible="showRegisterDialog"
-        modal
-        header="Register"
-        :style="{ width: '30rem' }"
-        :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
-        :dismissableMask="true"
-      >
-        <div class="flex align-items-center justify-content-center">
-          <img :src="`/src/assets/img/logo.png`" style="width: 90px" />
-        </div>
-        <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText
-            v-model="registerUsername"
-            id="register-username"
-            class="flex h-2rem mt-3"
-            autocomplete="off"
-          />
-          <label class="left-auto text-lg" for="register-username">Username</label>
-        </FloatLabel>
-        <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText
-            v-model="registerPassword"
-            id="register-password"
-            type="password"
-            class="flex h-2rem mt-3"
-            autocomplete="off"
-          />
-          <label class="left-auto text-lg" for="register-password">Password</label>
-        </FloatLabel>
-        <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText
-            v-model="confirmPassword"
-            id="confirm-password"
-            type="password"
-            class="flex h-2rem mt-3"
-            autocomplete="off"
-          />
-          <label class="left-auto text-lg" for="confirm-password">Confirm Password</label>
-        </FloatLabel>
-        <div class="flex justify-content-end gap-3 h-2rem">
-          <Button
-            class="w-4rem"
-            type="button"
-            label="Cancel"
-            severity="secondary"
-            @click="showRegisterDialog = false"
-          ></Button>
-          <Button
-            class="w-4rem bg-orange-500 border-orange-500"
-            type="button"
-            label="Register"
-            @click="handleRegister"
-          ></Button>
         </div>
       </Dialog>
     </div>
@@ -151,22 +106,27 @@ export default {
     InputText,
     FloatLabel
   },
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      required: true
+    }
+  },
   data: () => ({
     menuVisible: false,
-    accountVisible: false,
-    loginVisible: true,
+    accouuntVisible: false,
+    loginvisible: true,
     showDialog: false,
-    showRegisterDialog: false, // Add showRegisterDialog data property
-    username: '', // Add username data property
-    password: '', // Add password data property
-    registerUsername: '', // Add registerUsername data property
-    registerPassword: '', // Add registerPassword data property
-    confirmPassword: '', // Add confirmPassword data property
-    registeredUsers: {}, // Add registeredUsers data property to store user credentials
+    password: {
+      show: false,
+      current: null,
+      new: null,
+      verify: null
+    },
     navigation: [
       { label: 'Home', url: '/' },
       { label: 'About', url: '/about' },
-      { label: 'Contact', url: '#contact' },
+      { label: 'Contact', url: '/#contact' },
       { label: 'Services', url: '/services' }
     ],
     item: [
@@ -194,52 +154,12 @@ export default {
     },
     toggleLogin() {
       this.showDialog = false
-      this.loginVisible = !this.loginVisible
-      this.accountVisible = !this.accountVisible
-    },
-    handleLogin() {
-      // Implement login validation and submission logic here
-      if (this.username === '' || this.password === '') {
-        alert('Please enter both username and password.');
-        return;
-      }
-
-      // Check against registered users
-      if (this.registeredUsers[this.username] && this.registeredUsers[this.username] === this.password) {
-        alert('Login successful!');
-        this.toggleLogin();
-      } else {
-        alert('Invalid username or password.');
-      }
-    },
-    handleRegister() {
-      // Implement registration validation and submission logic here
-      if (this.registerUsername === '' || this.registerPassword === '' || this.confirmPassword === '') {
-        alert('Please fill in all fields.');
-        return;
-      }
-
-      if (this.registerPassword !== this.confirmPassword) {
-        alert('Passwords do not match.');
-        return;
-      }
-
-      // Store the registered user
-      this.registeredUsers[this.registerUsername] = this.registerPassword;
-
-      alert('Registration successful! You can now log in.');
-      this.showRegisterDialog = false;
-      this.showDialog = true;
+      this.loginvisible = !this.loginvisible
+      this.accouuntVisible = !this.accouuntVisible
     }
   }
 }
 </script>
-
-<style scoped>
-/* Add any specific styles for your component here */
-</style>
-
-
 
 <style scoped lang="scss">
 @import '@/assets/scss/_variables.scss';
@@ -260,15 +180,17 @@ export default {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
-#toolbar-wrapper {
+
+.toolbar-wrapper {
   width: 100%;
   display: flex;
   left: 0;
   top: 0%;
   justify-content: space-around;
-  background: #ffff;
-  //position: fixed;
-  //z-index: 99;
+  transition: background-color 0.001ms;
+}
+.toolbar-wrapper.dark-toolbar {
+  background: #212121;
 }
 
 .container {
@@ -286,6 +208,10 @@ export default {
   background: #ffffff;
   border: 3px solid black;
 }
+.container .account-menu.dark-button {
+  background: #212121;
+  border: 3px solid white;
+}
 
 .container .login-menu {
   margin-top: 18px;
@@ -294,11 +220,16 @@ export default {
   width: 25%;
   border-radius: 20px;
   background-color: #fe7a36;
+  border: none;
+}
+.container .login-menu.dark-button {
+  background-color: #C94D0D;
 }
 
 .container .p-button:focus {
   box-shadow: 0 0 0 2px #ffffff;
 }
+
 .logo {
   display: flex;
   position: relative;
@@ -308,6 +239,10 @@ export default {
   height: 76px;
   border-radius: 50%;
   padding-left: 2rem;
+  transition: background-color 0.001ms;
+}
+.logo.dark-logo {
+  color: #212121;
 }
 
 .logo a {
@@ -318,10 +253,17 @@ export default {
   font-weight: normal;
   color: #fe7a36;
 }
+.logo a.dark-text {
+  color: #ffffff;
+}
 
 .logo-image {
   width: 76px !important;
   height: 76px;
+}
+
+.p-dialog .p-dialog-content.dark-toolbar {
+  background-color: #212121;
 }
 
 ::v-deep(.p-menu) {
@@ -368,6 +310,10 @@ export default {
   border: none;
   padding-left: 0%;
   padding-right: 0;
+  transition: background-color 0.001ms;
+}
+::v-deep(.p-tabmenu.dark-tabmenu) .p-tabmenu-nav {
+  background-color: #212121;
 }
 
 ::v-deep(.p-tabmenu) .p-tabmenuitem .p-menuitem-link {
@@ -378,10 +324,15 @@ export default {
   align-items: center;
   gap: 16px;
   color: #0c0c0c;
+  transition: background-color 0.001ms;
   @media only screen and (max-width: 576px) {
     padding: 0.55rem;
   }
 }
+::v-deep(.p-tabmenu.dark-tabmenu) .p-tabmenuitem .p-menuitem-link {
+  color: #ffffff;
+}
+
 ::v-deep(.p-tabmenu) .p-tabmenuitem .p-menuitem-link .p-menuitem-text {
   font-weight: 600;
 }
