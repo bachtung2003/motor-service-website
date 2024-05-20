@@ -28,7 +28,7 @@
     </div>
 
     <div class="info" v-if="displayAccount">
-      <Account></Account>
+      <Account :class="[{ dark: isDarkMode }]"></Account>
     </div>
 
     <div class="info" v-if="displayOrders">

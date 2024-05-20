@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="container" class="container" :class="[{ dark: isDarkMode }]">
     <div class="in4_Board">
       <div class="topic">BASIC INFORMATION</div>
       <div class="body">
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="body" style="border-radius: 10px" >
+    <div class="body" style="border-radius: 10px">
       <a href="#">Delete my account</a>
     </div>
   </div>
@@ -47,7 +47,12 @@
 
 <script>
 export default {
-  // Add your script here if needed
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      required: true
+    }
+  }
 }
 </script>
 
@@ -56,6 +61,10 @@ export default {
   display: block;
   background-color: white;
   padding-right: 40px;
+}
+
+.container.dark {
+  background-color: #212121 !important;
 }
 
 table {
@@ -90,7 +99,7 @@ td {
 .topic {
   padding: 10px;
   padding-left: 30px;
-  background-color: #4D4D4D;
+  background-color: #4d4d4d;
   color: white;
   font-size: 30px;
   font-weight: 600;
