@@ -1,8 +1,10 @@
 import express from 'express';
 // eslint-disable-next-line no-undef
+import mongoose from 'mongoose';
 import { connect, connection } from 'mongoose';
 // eslint-disable-next-line no-undef
 import { json } from 'body-parser';
+import authRoutes from './routes/auth';
 // eslint-disable-next-line no-undef
 import cors from 'cors';
 
