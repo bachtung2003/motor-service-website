@@ -40,32 +40,31 @@
       ></div>
       <div
         class="contact-container flex flex-column"
-        :style="{ backgroundColor: isDarkMode ? '#3b3a3a' : '#e5e7eb' }"
+        style="background-color: #e5e7eb"
       >
-        <h2 class="pb-5 text-4xl font-medium" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+        <h2 class="pb-5 text-4xl font-medium" >
           Book a trusted mechanic
         </h2>
-        <p class="font-light text-lg" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+        <p class="font-light text-lg">
           Call us now
         </p>
         <div class="flex pb-4 align-items-center">
           <i
             class="pi pi-phone flex align-items-center pr-3 text-6xl"
-            :style="{ color: isDarkMode ? 'white' : 'initial' }"
+            
           ></i>
-          <h1 class="font-medium text-6xl" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+          <h1 class="font-medium text-6xl" >
             +1(12) 366 411 4999
           </h1>
         </div>
-        <p class="font-light text-lg" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+        <p class="font-light text-lg" >
           Or Email us
         </p>
         <div class="flex align-items-center">
           <i
             class="pi pi-envelope flex align-items-center pr-3 text-6xl"
-            :style="{ color: isDarkMode ? 'white' : 'initial' }"
           ></i>
-          <h1 class="font-medium text-6xl" :style="{ color: isDarkMode ? 'white' : 'initial' }">
+          <h1 class="font-medium text-6xl" >
             support@ahamay.vn
           </h1>
         </div>

@@ -1,6 +1,6 @@
 <template>
-  <div id="toolbar-wrapper">
-    <div class="footer-subcribe-content">
+  <div id="toolbar-wrapper" :class="['toolbar-wrapper', {dark: isDarkMode}]">
+    <div class="footer-subcribe-content" >
       <a href="#">Subcribe For Special Offers</a>
       <p>Get Weekly Newsletter</p>
     </div>
@@ -25,6 +25,12 @@ export default {
     InputText,
     FloatLabel
   },
+  props: {
+    isDarkMode: {
+      type: Boolean,
+      required: true
+    }
+  },
   methods: {
     isHome() {
       return this.$route.path === '/'
@@ -41,7 +47,7 @@ export default {
   font-family: 'Roboto', sans-serif;
 }
 
-#toolbar-wrapper {
+.toolbar-wrapper {
   width: 100vw;
   height: 100px;
   margin-top: 4%;
@@ -49,6 +55,10 @@ export default {
   background: #fe7a36;
   align-items: center;
   justify-content: center;
+}
+
+.toolbar-wrapper.dark{
+  background-color: #535151;
 }
 
 .container {

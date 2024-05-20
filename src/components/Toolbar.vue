@@ -223,7 +223,7 @@ export default {
   border: none;
 }
 .container .login-menu.dark-button {
-  background-color: #ff8c00;
+  background-color: #C94D0D;
 }
 
 .container .p-button:focus {

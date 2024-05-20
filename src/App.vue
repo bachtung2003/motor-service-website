@@ -8,7 +8,7 @@
       <Toolbar class="flex w-full" :isDarkMode="isDarkMode" ref="toolbar"></Toolbar>
     </div>
     <router-view :isDarkMode="isDarkMode" />
-    <Footer class="flex" ref="footer" />
+    <Footer class="flex" ref="footer" :class="[{ dark: isDarkMode }]"></Footer>
   </div>
 </template>
 
