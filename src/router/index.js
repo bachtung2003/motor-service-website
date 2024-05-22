@@ -16,13 +16,6 @@ const routes = [
     component: () => import('@/views/About.vue')
   },
   {
-    path: '/contact',
-    meta: {
-      title: 'Contact'
-    },
-    component: () => import('@/views/Contact.vue')
-  },
-  {
     path: '/user',
     meta: {
       title: 'User'
@@ -42,6 +35,13 @@ const routes = [
       title: 'Service'
     },
     component: () => import('@/views/Service.vue')
+  },
+  {
+    path: '/success',
+    meta: {
+      title: 'Success'
+    },
+    component: () => import('@/views/Success.vue')
   }
 ]
 

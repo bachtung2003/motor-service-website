@@ -15,6 +15,7 @@
 <script>
 import Toolbar from '../src/components/Toolbar.vue'
 import Footer from '../src/components/Footer.vue'
+import { StripeCheckout } from '@vue-stripe/vue-stripe'
 
 import './assets/main.css'
 import '../node_modules/primeflex/primeflex.scss'
@@ -29,7 +30,8 @@ export default {
   },
   components: {
     Toolbar,
-    Footer
+    Footer,
+    StripeCheckout
   },
   methods: {
     toggleTheme() {

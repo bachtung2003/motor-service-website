@@ -1,31 +1,44 @@
 import express from 'express'
-// eslint-disable-next-line no-undef
-
-import mongoose from 'mongoose'
-import { connect, connection } from 'mongoose'
-// eslint-disable-next-line no-undef
-import authRoutes from '../models/routes/auth.js'
-import { json } from 'body-parser'
-// eslint-disable-next-line no-undef
 import cors from 'cors'
+import mongoose from 'mongoose'
+import authRoutes from '../models/routes/auth.js' // Corrected path
+import User from '../models/User.js' // Correct path
 
 const app = express()
 
 // Middleware
-app.use(json())
+app.use(express.json())
 app.use(cors())
 
+// Use authentication routes
+app.use('/auth', authRoutes)
+
 // MongoDB connection
-connect('mongodb://localhost:27017/vue-auth', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.set('strictQuery', false)
+mongoose
+  .connect(
+    'mongodb+srv://admin:admin@cluster0.rjipatt.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
+  )
+  .then(() => {
+    console.log('Connected to MongoDB')
+    app.listen(5173, () => {
+      console.log('Server is running on port 5173')
+    })
+  })
+  .catch((error) => {
+    console.error('Connection error', error)
+  })
 
-const db = connection
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', () => {
-  console.log('Connected to MongoDB')
+app.post('/user', async (req, res) => {
+  try {
+    const user = await User.create(req.body)
+    res.status(200).json(user)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).json({ message: error.message })
+  }
 })
-
-app.use('/api/auth', authRoutes)
-
-// eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

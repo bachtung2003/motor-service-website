@@ -36,7 +36,6 @@
         <template #header>
           <div class="flex flex-wrap align-items-center justify-content-between gap-2">
             <span class="text-xl text-900 font-bold">Products</span>
-            <button @click="editBtn()">Edit</button>
           </div>
         </template>
         <Column field="label" header="Name"></Column>
@@ -54,7 +53,10 @@
         <Column field="selectedBrand.brand" header="Brand"></Column>
         <Column field="selectedBrand.price" header="Price"></Column>
         <template #footer>
-          In total there are {{ products ? products.length : 0 }} products.
+          <div class="flex justify-content-between align-items-center">
+            In total there are {{ products ? products.length : 0 }} products.
+            <Button class="" @click="editBtn()">Checkout </Button>
+          </div>
         </template>
       </DataTable>
     </div>
@@ -67,19 +69,24 @@
 
 <script>
 import Account from './Account.vue'
+import Button from 'primevue/button'
 import Breadcrumb from 'primevue/breadcrumb'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Rating from 'primevue/rating'
 import servicesData from '../services/data'
 import EventBus from '@/utils/Eventbus'
+import axios from 'axios'
+import StripeCheckout from 'vue-stripe-checkout'
 export default {
   components: {
     Account,
     Breadcrumb,
     DataTable,
     Column,
-    Rating
+    Rating,
+    Button,
+    StripeCheckout
   },
   data() {
     return {
@@ -87,7 +94,10 @@ export default {
       displayOrders: false,
       displayLogout: false,
       activeElement: 'item_1',
-      products: servicesData
+      products: servicesData,
+      publishableKey:
+        'pk_test_51PIpED01HTEsX8gXhs9HBmHQl16bAZYyvArNfoLvILs5DO7IoIC6uqG7uqiHMkjCwu5EZF5VYu9JSvkBJoALW0kw00qNCZMn76',
+      session: {}
     }
   },
   props: {
@@ -120,6 +130,22 @@ export default {
     },
     addProductToCart(product) {
       this.products.push(product)
+    },
+    async checkout() {
+      try {
+        const amount = 1000 // Amount in cents
+        const response = await axios.post('http://localhost:3001/create-payment-intent', { amount })
+        this.session = { id: response.data }
+        this.$refs.checkoutRef.redirectToCheckout()
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    },
+    onSuccess() {
+      console.log('Payment successful!')
+    },
+    onError() {
+      console.error('Payment failed!')
     }
   },
   created() {

@@ -126,7 +126,6 @@ export default {
     navigation: [
       { label: 'Home', url: '/' },
       { label: 'About', url: '/about' },
-      { label: 'Contact', url: '/#contact' },
       { label: 'Services', url: '/services' }
     ],
     item: [
@@ -135,10 +134,6 @@ export default {
           {
             label: 'Account Settings',
             url: '/user'
-          },
-          {
-            label: 'My Orders',
-            url: '/orders'
           },
           {
             label: 'Log Out',
@@ -223,7 +218,7 @@ export default {
   border: none;
 }
 .container .login-menu.dark-button {
-  background-color: #C94D0D;
+  background-color: #c94d0d;
 }
 
 .container .p-button:focus {
@@ -303,7 +298,7 @@ export default {
   padding: 20px 148px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   font-weight: 600;
   list-style-type: none;
   font-size: 1.2rem;

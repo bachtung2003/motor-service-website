@@ -67,12 +67,16 @@
                 <div class="flex flex-column md:align-items-end gap-5">
                   <Button
                     @click="showDialog(item)"
-                    class="w-full h-3rem text-xl font-semibold text-blue-700 bg-white border-round-xs border-1 border-orange-500"
+                    class="w-full h-3rem text-xl font-semibold bg-white border-round-xs border-1"
+                    :style="{ color: isDarkMode ? 'black' : '#303F9F' }"
                     >Make Order</Button
                   >
                   <Button
-                    class="text-xl w-full h-3rem font-semibold text-white bg-orange-500"
-                    :style="{ border: isDarkMode ? '1px solid white' : 'initial' }"
+                    class="text-xl w-full h-3rem font-semibold text-white"
+                    :style="{
+                      border: isDarkMode ? '1px solid white' : 'initial',
+                      backgroundColor: isDarkMode ? '#6E6E6D' : '#FE7A36'
+                    }"
                     @click="navigateRoute"
                     >Set Appointment</Button
                   >
@@ -115,15 +119,24 @@
                     label="Buy Now"
                     severity="secondary"
                     class="bg-white text-blue-500 border-orange-500 w-3"
-                    @click="visible = false"
+                    @click="submit"
                   ></Button>
                   <Button
                     type="button"
                     label="Add to cart"
                     class="bg-orange-500 text-white border-orange-500 w-3"
                     @click="addToCart"
-                  ></Button></div
-              ></template>
+                  ></Button>
+                </div>
+                <stripe-checkout
+                  ref="checkoutRef"
+                  mode="subscription"
+                  :pk="publishableKey"
+                  :line-items="lineItems"
+                  :success-url="successUrl"
+                  :cancel-url="cancelUrl"
+                ></stripe-checkout>
+              </template>
             </Dialog>
           </template>
         </DataView>
@@ -140,13 +153,15 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import servicesData from '@/services/data'
 import EventBus from '@/utils/Eventbus'
+import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
   components: {
     Breadcrumb,
     DataView,
     Dropdown,
     Dialog,
-    Button
+    Button,
+    StripeCheckout
   },
   props: {
     isDarkMode: {
@@ -168,7 +183,17 @@ export default {
       selectedFilter: '',
       visible: false,
       selectedService: null,
-      selectedBrand: null
+      selectedBrand: null,
+      publishableKey:
+        'pk_test_51PIpED01HTEsX8gXhs9HBmHQl16bAZYyvArNfoLvILs5DO7IoIC6uqG7uqiHMkjCwu5EZF5VYu9JSvkBJoALW0kw00qNCZMn76',
+      lineItems: [
+        {
+          price: 'price_1PIrkD01HTEsX8gXlBPmxJrW',
+          quantity: 1
+        }
+      ],
+      successUrl: 'http://localhost:5173/success',
+      cancelUrl: 'http://localhost:5173/service'
     }
   },
   mounted() {
@@ -219,6 +244,16 @@ export default {
     navigateRoute() {
       this.$router.push('/appointment')
       window.scrollTo(0, 0)
+    },
+    async submit() {
+      try {
+        const amount = 1000 // Amount in cents
+        const response = await axios.post('http://localhost:3001/create-payment-intent', { amount })
+        this.session = { id: response.data }
+        this.$refs.checkoutRef.redirectToCheckout()
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
   }
 }
@@ -270,6 +305,10 @@ export default {
   background-color: #fe7a36;
   margin-bottom: 3rem;
   border: none;
+}
+
+.services-content.dark .p-dataview-header {
+  background-color: #6e6e6d !important;
 }
 .image2 p {
   top: 50px;
@@ -326,7 +365,7 @@ export default {
 }
 
 .content-header.dark {
-  color: #fe7a36 !important;
+  color: white !important;
 }
 
 .custom-dialog {
