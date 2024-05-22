@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "start": "node api/src/server.js"
   },
   "dependencies": {
     "@vue-stripe/vue-stripe": "^4.5.0",
@@ -23,10 +24,13 @@
     "primeicons": "^6.0.1",
     "primevue": "^3.49.1",
     "sass": "^1.71.1",
+    "simple-encryptor": "^4.0.0",
     "stripe": "^15.7.0",
     "vue": "^3.4.15",
     "vue-router": "^4.3.2",
-    "vue-stripe-checkout": "^3.5.15"
+    "vue-stripe": "^0.1.52",
+    "vue-stripe-checkout": "^3.5.15",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.3.3",
