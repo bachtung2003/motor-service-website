@@ -7,7 +7,7 @@ mongoose.set('strictQuery', false)
 const app = express()
 
 mongoose
-  .connect('mongodb://localhost:27017/user', {
+  .connect('mongodb+srv://Hoang145:Anhongdo20@cluster0.ixicmt3.mongodb.net/user', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
