@@ -2,19 +2,20 @@ var express = require('express')
 var cors = require('cors')
 var mongoose = require('mongoose')
 var routes = require('./route/routes')
+require('dotenv').config()
 mongoose.set('strictQuery', false)
 
 const app = express()
 
 mongoose
-  .connect('mongodb+srv://Hoang145:Anhongdo20@cluster0.ixicmt3.mongodb.net/user', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
     console.log('Connected to MongoDB')
-    app.listen(5734, () => {
-      console.log('Server is running on port 5734')
+    app.listen(process.env.PORT, () => {
+      console.log('Server is running on port ', process.env.PORT)
     })
   })
   .catch((error) => {
