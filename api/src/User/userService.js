@@ -9,6 +9,8 @@ module.exports.createUserDBService = async (userDetails) => {
       username: userDetails.username,
       email: userDetails.email,
       isAdmin: userDetails.isAdmin,
+      phoneNumber: userDetails.phoneNumber,
+      dateOfBirth: userDetails.dateOfBirth,
       password: encryptor.encrypt(userDetails.password)
     })
 
@@ -22,6 +24,7 @@ module.exports.createUserDBService = async (userDetails) => {
 module.exports.loginuserDBService = async (employeeDetails) => {
   try {
     const result = await userModel.findOne({ username: employeeDetails.username })
+    console.log(result)
     if (result) {
       const decrypted = encryptor.decrypt(result.password)
       const accessToken = jwt.sign(

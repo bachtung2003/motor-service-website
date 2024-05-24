@@ -12,6 +12,20 @@ const router = express.Router()
 
 router.route('/user/login').post(userService.loginUserControllerFn)
 router.route('/user/create').post(userService.createUserControllerFn)
+router.get('/user/info', verifyToken, async (req, res) => {
+  try {
+    const userId = req.user.id
+    const user = await User.findById(userId)
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+    const { password, ...userInfo } = user.toObject()
+    res.status(200).json(userInfo)
+  } catch (err) {
+    res.status(500).json({ message: 'Internal server error' })
+  }
+})
+
 router.put('/user/:id', verifyTokenAndAuthentication, async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -34,7 +48,7 @@ router.put('/user/:id', verifyTokenAndAuthentication, async (req, res) => {
 
 router.delete('/user/:id', verifyTokenAndAuthentication, async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id)
+    await User.findById(req.params.id)
     res.status(200).json('User has been deleted')
   } catch (err) {
     res.status(500).json(err)
