@@ -1,6 +1,6 @@
 <template>
   <div class="Ubanner_wrapper" :class="[{ dark: isDarkMode }]">
-    <Ubanner class="" :types="2"></Ubanner>
+    <Ubanner class="" :types="1"></Ubanner>
     <List_Account :class="[{ dark: isDarkMode }]" :isDarkMode="isDarkMode"></List_Account>
   </div>
 </template>

@@ -35,7 +35,7 @@
                 class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 border-1 p-7"
                 :style="{ backgroundColor: isDarkMode ? '#212121' : 'initial' }"
               >
-                <div class="md:w-10rem relative">
+                <div class="md:w-12rem relative">
                   <img
                     class="block xl:block mx-auto border-round w-full"
                     :style="{ border: isDarkMode ? '1px solid white' : 'initial' }"
@@ -128,20 +128,20 @@
                     @click="addToCart"
                   ></Button>
                 </div>
-                <stripe-checkout
-                  ref="checkoutRef"
-                  mode="subscription"
-                  :pk="publishableKey"
-                  :line-items="lineItems"
-                  :success-url="successUrl"
-                  :cancel-url="cancelUrl"
-                ></stripe-checkout>
               </template>
             </Dialog>
           </template>
         </DataView>
       </div>
     </div>
+    <stripe-checkout
+      ref="checkoutRef"
+      mode="subscription"
+      :pk="publishableKey"
+      :line-items="lineItems"
+      :success-url="successUrl"
+      :cancel-url="cancelUrl"
+    ></stripe-checkout>
   </div>
 </template>
 
@@ -153,6 +153,7 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import servicesData from '@/services/data'
 import EventBus from '@/utils/Eventbus'
+import axios from 'axios'
 import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
   components: {
@@ -184,16 +185,11 @@ export default {
       visible: false,
       selectedService: null,
       selectedBrand: null,
+      lineItems: [],
       publishableKey:
         'pk_test_51PIpED01HTEsX8gXhs9HBmHQl16bAZYyvArNfoLvILs5DO7IoIC6uqG7uqiHMkjCwu5EZF5VYu9JSvkBJoALW0kw00qNCZMn76',
-      lineItems: [
-        {
-          price: 'price_1PIrkD01HTEsX8gXlBPmxJrW',
-          quantity: 1
-        }
-      ],
-      successUrl: 'http://localhost:5173/success',
-      cancelUrl: 'http://localhost:5173/service'
+      successUrl: 'http://localhost:5173/',
+      cancelUrl: 'http://localhost:5173/services'
     }
   },
   mounted() {
@@ -246,13 +242,31 @@ export default {
       window.scrollTo(0, 0)
     },
     async submit() {
+      if (!this.selectedBrand) {
+        console.error('No brand selected')
+        return
+      }
+      this.lineItems = [
+        {
+          price: this.selectedBrand.priceId,
+          quantity: 1
+        }
+      ]
+      console.log(this.$refs.checkoutRef)
       try {
-        const amount = 1000 // Amount in cents
-        const response = await axios.post('http://localhost:3001/create-payment-intent', { amount })
-        this.session = { id: response.data }
-        this.$refs.checkoutRef.redirectToCheckout()
+        const result = await this.$refs.checkoutRef.redirectToCheckout({
+          lineItems: this.lineItems,
+          mode: 'payment',
+          successUrl: this.successUrl,
+          cancelUrl: this.cancelUrl
+        })
+        console.log(result)
+
+        if (result.error) {
+          console.error('Error during checkout:', result.error)
+        }
       } catch (error) {
-        console.error('Error:', error)
+        console.error('Error during checkout:', error)
       }
     }
   }

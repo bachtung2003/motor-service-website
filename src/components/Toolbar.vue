@@ -12,7 +12,7 @@
     <div class="container mt-4" :class="[{ dark: isDarkMode }]">
       <TabMenu :model="navigation" :class="['navigation w-full', { 'dark-tabmenu': isDarkMode }]" />
       <Button
-        v-if="accouuntVisible"
+        v-if="isLoggedIn"
         @click="menuVisible = !menuVisible"
         rounded
         :class="['account-menu', { 'dark-button': isDarkMode }]"
@@ -26,12 +26,21 @@
         </div>
       </Button>
       <Button
-        v-if="loginvisible"
+        v-if="!isLoggedIn"
         label="Login"
         @click="showDialog = true"
         :class="['login-menu', { 'dark-button': isDarkMode }]"
       />
-      <Menu v-if="menuVisible" class="card absolute right-0 border-transparent" :model="item" />
+      <Menu v-if="menuVisible" class="card absolute right-0 border-transparent" :model="item"
+        ><template #item="{ item }">
+          <a href="/user" v-ripple class="flex align-items-center">
+            <span class="ml-2">{{ item.label }}</span>
+          </a>
+          <a class="flex align-content-start align-items-center w-full pl-3" @click="logout"
+            >Logout</a
+          >
+        </template>
+      </Menu>
       <Dialog
         ref="dialog"
         v-model:visible="showDialog"
@@ -52,15 +61,16 @@
             autocomplete="off"
           />
           <label :class="['left-auto text-lg', { 'dark-text': isDarkMode }]" for="username"
-            >Username</label
-          >
+            >Username
+          </label>
         </FloatLabel>
         <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <Password
+          <InputText
             v-model="loginData.password"
             :feedback="false"
             class="flex h-2rem mt-3"
             toggleMask
+            type="password"
           />
           <label :class="[' flex left-auto text-lg', { 'dark-text': isDarkMode }]" for="password">
             Password
@@ -85,16 +95,155 @@
         </div>
         <div>
           <small class="flex justify-content-end mt-1">
-            <a href="#" :class="['text-orange-500', { 'dark-link': isDarkMode }]"
+            <a
+              @click="entryRegister()"
+              :class="[
+                'text-orange-500 hover:bg-orange-500 hover:text-white cursor-pointer	',
+                { 'dark-link': isDarkMode }
+              ]"
               >Doesn't have account? Click me!</a
             >
           </small>
         </div>
       </Dialog>
+      <Dialog
+        ref="dialog"
+        v-model:visible="showDialogRegister"
+        modal
+        header="Register"
+        :style="{ width: '30rem' }"
+        :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+        :dismissableMask="true"
+      >
+        <div class="flex align-items-center justify-content-center">
+          <img src="/src/assets/img/logo.png" style="width: 90px" />
+        </div>
+        <form @submit.prevent="handleRegister">
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <InputText
+              v-model="registerData.username"
+              id="register-username"
+              class="flex h-2rem mt-3 w-7"
+              autocomplete="off"
+              required
+              :class="{ 'p-invalid': !isUsernameValid && isSubmitted }"
+            />
+            <label
+              :class="['left-auto text-lg', { 'dark-text': isDarkMode }]"
+              for="register-username"
+            >
+              Username
+            </label>
+            <small v-if="!isUsernameValid && isSubmitted" class="p-error"
+              >Username is required.</small
+            >
+          </FloatLabel>
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <InputText
+              v-model="registerData.fullname"
+              id="register-fullname"
+              class="flex h-2rem mt-3 w-7"
+              autocomplete="off"
+              required
+              :class="{ 'p-invalid': !isFullnameValid && isSubmitted }"
+            />
+            <label
+              :class="['left-auto text-lg', { 'dark-text': isDarkMode }]"
+              for="register-fullname"
+            >
+              Your Full Name
+            </label>
+            <small v-if="!isUsernameValid && isSubmitted" class="p-error"
+              >Username is required.</small
+            >
+          </FloatLabel>
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <InputText
+              v-model="registerData.password"
+              :feedback="false"
+              class="flex h-2rem mt-3 w-7"
+              toggleMask
+              required
+              type="password"
+              :class="{ 'p-invalid': !isPasswordValid && isSubmitted }"
+            />
+            <label
+              :class="[' flex left-auto text-lg', { 'dark-text': isDarkMode }]"
+              for="register-password"
+            >
+              Password
+            </label>
+            <small v-if="!isPasswordValid && isSubmitted" class="p-error"
+              >Password is required.</small
+            >
+          </FloatLabel>
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <InputText
+              v-model="registerData.email"
+              class="flex h-2rem mt-3 w-7"
+              required
+              :class="{ 'p-invalid': !isEmailValid && isSubmitted }"
+            />
+            <label
+              :class="[' flex left-auto text-lg', { 'dark-text': isDarkMode }]"
+              for="register-email"
+            >
+              Email
+            </label>
+            <small v-if="!isEmailValid && isSubmitted" class="p-error">Email is required.</small>
+          </FloatLabel>
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <InputText
+              v-model="registerData.phoneNumber"
+              class="flex h-2rem mt-3 w-7"
+              required
+              :class="{ 'p-invalid': !isPhoneNumberValid && isSubmitted }"
+            />
+            <label
+              :class="[' flex left-auto text-lg', { 'dark-text': isDarkMode }]"
+              for="register-phone"
+            >
+              Phone Number
+            </label>
+            <small v-if="!isPhoneNumberValid && isSubmitted" class="p-error"
+              >Phone number is required.</small
+            >
+          </FloatLabel>
+          <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
+            <input
+              type="date"
+              v-model="registerData.dateOfBirth"
+              id="register-dateOfBirth"
+              class="flex h-2rem mt-3 w-7 justify-content-center"
+              required
+              :class="{ 'p-invalid ': !isDateOfBirthValid && isSubmitted }"
+            />
+            <small v-if="!isDateOfBirthValid && isSubmitted" class="p-error"
+              >Date of birth is required.</small
+            >
+          </FloatLabel>
+          <div class="flex justify-content-end gap-3 h-2rem">
+            <Button
+              class="w-4rem"
+              type="button"
+              label="Cancel"
+              severity="secondary"
+              @click="showDialogRegister = false"
+              :class="{ 'dark-button': isDarkMode }"
+            ></Button>
+            <Button
+              class="w-4rem bg-orange-500 border-orange-500"
+              type="submit"
+              label="Register"
+              :class="{ 'dark-button': isDarkMode }"
+            ></Button>
+          </div>
+        </form>
+      </Dialog>
     </div>
   </div>
+  <Toast ref="toast" :group="false" position="top-right" />
 </template>
-
 <script>
 import Menu from 'primevue/menu'
 import TabMenu from 'primevue/tabmenu'
@@ -103,7 +252,9 @@ import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'
 import Password from 'primevue/password'
-import { loginUser } from '../utils/userService'
+import Toast from 'primevue/toast'
+import authMixin from '../utils/auth.js'
+import { registerUser } from '../utils/userService.js'
 
 import 'primevue/resources/themes/lara-light-indigo/theme.css'
 
@@ -115,7 +266,8 @@ export default {
     Button,
     InputText,
     FloatLabel,
-    Password
+    Password,
+    Toast
   },
   props: {
     isDarkMode: {
@@ -123,7 +275,9 @@ export default {
       required: true
     }
   },
+  mixins: [authMixin],
   data: () => ({
+    showDialogRegister: false,
     menuVisible: false,
     accouuntVisible: false,
     loginvisible: true,
@@ -131,6 +285,14 @@ export default {
     loginData: {
       username: null,
       password: null
+    },
+    registerData: {
+      username: '',
+      fullname: '',
+      password: '',
+      phoneNumber: '',
+      email: '',
+      dateOfBirth: ''
     },
     navigation: [
       { label: 'Home', url: '/' },
@@ -143,15 +305,31 @@ export default {
           {
             label: 'Account Settings',
             url: '/user'
-          },
-          {
-            label: 'Log Out',
-            url: '/'
           }
         ]
       }
     ]
   }),
+  computed: {
+    isUsernameValid() {
+      return this.registerData.username.trim() !== ''
+    },
+    isFullnameValid() {
+      return this.registerData.fullname.trim() !== ''
+    },
+    isPasswordValid() {
+      return this.registerData.password.trim() !== ''
+    },
+    isEmailValid() {
+      return this.registerData.email.trim() !== ''
+    },
+    isPhoneNumberValid() {
+      return this.registerData.phoneNumber.trim() !== ''
+    },
+    isDateOfBirthValid() {
+      return this.registerData.dateOfBirth.trim() !== ''
+    }
+  },
   methods: {
     toggleMenu() {
       this.menuVisible = !this.menuVisible
@@ -162,21 +340,64 @@ export default {
       this.accouuntVisible = !this.accouuntVisible
     },
     async handleLogin() {
-      try {
-        const loginData = {
-          username: this.loginData.username,
-          password: this.loginData.password
+      const success = await this.login(this.loginData)
+      if (success) {
+        this.showDialog = false
+        this.$refs.toast.add({
+          severity: 'success',
+          summary: 'Login Successful',
+          life: 1200
+        })
+        if (this.$route.path.includes('/user')) {
+          setTimeout(() => {
+            window.location.href = '/user'
+          }, 1500)
         }
-        const response = await loginUser(loginData)
-        if (response) {
-          this.toggleLogin()
-        } else {
-          alert(response.data)
-        }
-      } catch (error) {
-        console.error('Error during login:', error)
-        alert('An error occurred during login.')
+      } else {
+        this.$refs.toast.add({
+          severity: 'error',
+          summary: 'Login Failed',
+          detail: 'Invalid username or password',
+          life: 3000
+        })
       }
+    },
+    logout() {
+      if (this.$route.path.includes('/user')) {
+        window.location.href = '/user'
+      }
+      this.$options.mixins[0].methods.logout.call(this)
+      this.menuVisible = false
+    },
+    entryRegister() {
+      this.showDialog = false
+      this.showDialogRegister = true
+    },
+    async handleRegister() {
+      this.isSubmitted = true
+      if (
+        this.isUsernameValid &&
+        this.isFullnameValid &&
+        this.isPasswordValid &&
+        this.isEmailValid &&
+        this.isPhoneNumberValid
+      ) {
+        const success = await registerUser(this.registerData)
+        if (success) {
+          this.showDialogRegister = false
+          this.registerData = {
+            username: '',
+            fullname: '',
+            password: '',
+            phoneNumber: '',
+            email: ''
+          }
+          this.isSubmitted = false
+        }
+      }
+    },
+    isUserPage() {
+      return this.$route.path.includes('/user')
     }
   }
 }
@@ -288,8 +509,8 @@ export default {
 }
 
 ::v-deep(.p-menu) {
-  top: 11.4% !important;
-  right: 3.9% !important;
+  top: 11.9% !important;
+  right: 6.9% !important;
   z-index: 10;
   padding: 0;
   border: 2px solid #fe7a36 !important;
@@ -301,12 +522,42 @@ export default {
 }
 
 ::v-deep(.p-menu) .p-menuitem {
-  padding: 0.7rem;
 }
 
-::v-deep(.p-menu) .p-menuitem:hover {
-  background-color: #fe7a36;
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content {
+  background-color: white;
+  border-radius: 10px;
 }
+
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content button {
+  padding: 0.5rem 0 0.5rem 1.1rem;
+  background-color: white;
+  color: #fe7a36;
+  border: none;
+  border: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+  line-height: 1.6;
+}
+
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content button:hover {
+  background-color: #fe7a36;
+  color: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content button:focus-visible {
+  box-shadow: none;
+}
+
+// ::v-deep(.p-menu) .p-menuitem:hover {
+//   background-color: #fe7a36;
+// }
 
 ::v-deep(.p-menu) .p-menuitem .p-menuitem-content .p-menuitem-link {
   transition: none;
@@ -316,8 +567,17 @@ export default {
   background-color: #fe7a36;
 }
 
-::v-deep(.p-menu) .p-menuitem:hover .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+::v-deep(.p-menu) .p-menuitem .p-menuitem-content a {
+  color: #fe7a36;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+::v-deep(.p-menu) .p-menuitem:hover .p-menuitem-content a:hover {
+  background-color: #fe7a36;
   color: white;
+  cursor: pointer;
 }
 
 ::v-deep(.p-tabmenu) .p-tabmenu-nav {

@@ -9,14 +9,14 @@
       >
         Account details
       </div>
-      <div
+      <!-- <div
         class="element item_2"
         v-on:click="setActiveElement('item_2')"
         v-bind:class="{ active: activeElement === 'item_2' }"
         :style="{ color: isDarkMode ? 'white' : 'initial' }"
       >
         My Orders
-      </div>
+      </div> -->
       <div
         class="element item_3"
         v-on:click="setActiveElement('item_3')"
@@ -28,10 +28,10 @@
     </div>
 
     <div class="info" v-if="displayAccount">
-      <Account :class="[{ dark: isDarkMode }]"></Account>
+      <Account :class="[{ dark: isDarkMode }]" :userData="userData"></Account>
     </div>
 
-    <div class="info" v-if="displayOrders">
+    <!-- <div class="info" v-if="displayOrders">
       <DataTable :value="products">
         <template #header>
           <div class="flex flex-wrap align-items-center justify-content-between gap-2">
@@ -59,7 +59,7 @@
           </div>
         </template>
       </DataTable>
-    </div>
+    </div> -->
 
     <div class="info" v-if="displayLogout">
       <p style="color: black">LOGING OUT...</p>
