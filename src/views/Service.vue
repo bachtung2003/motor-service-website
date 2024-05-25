@@ -143,6 +143,7 @@
       :cancel-url="cancelUrl"
     ></stripe-checkout>
   </div>
+  <Toast ref="toast" :group="false" position="top-right" />
 </template>
 
 <script>
@@ -153,6 +154,7 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import servicesData from '@/services/data'
 import EventBus from '@/utils/Eventbus'
+import Toast from 'primevue/toast'
 import axios from 'axios'
 import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
@@ -162,7 +164,8 @@ export default {
     Dropdown,
     Dialog,
     Button,
-    StripeCheckout
+    StripeCheckout,
+    Toast
   },
   props: {
     isDarkMode: {
@@ -244,6 +247,11 @@ export default {
     async submit() {
       if (!this.selectedBrand) {
         console.error('No brand selected')
+        this.$refs.toast.add({
+          severity: 'warn',
+          summary: 'Please select a brand',
+          life: 1200
+        })
         return
       }
       this.lineItems = [

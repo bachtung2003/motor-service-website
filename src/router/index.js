@@ -35,13 +35,6 @@ const routes = [
       title: 'Service'
     },
     component: () => import('@/views/Service.vue')
-  },
-  {
-    path: '/success',
-    meta: {
-      title: 'Success'
-    },
-    component: () => import('@/views/Success.vue')
   }
 ]
 
