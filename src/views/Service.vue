@@ -191,8 +191,8 @@ export default {
       lineItems: [],
       publishableKey:
         'pk_test_51PIpED01HTEsX8gXhs9HBmHQl16bAZYyvArNfoLvILs5DO7IoIC6uqG7uqiHMkjCwu5EZF5VYu9JSvkBJoALW0kw00qNCZMn76',
-      successUrl: 'http://localhost:5173/',
-      cancelUrl: 'http://localhost:5173/services'
+      successUrl: '/',
+      cancelUrl: '/services'
     }
   },
   mounted() {
