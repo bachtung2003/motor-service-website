@@ -5,39 +5,71 @@
       <div class="body">
         <table>
           <tr>
-            <td style="width: 500px">Full Name: Paul</td>
-            <td>Country: Vietnam</td>
+            <td style="width: 500px">Full Name: {{ userData ? userData.fullname : '' }}</td>
+            <td>Date Of Birth: {{ userData ? userData.dateOfBirth : '' }}</td>
           </tr>
           <tr>
-            <td>Date Of Birth: 20/4/2003</td>
-            <td>ZIP Code: 73000</td>
+            <td style="width: 500px">Email address: {{ userData ? userData.email : '' }}</td>
+            <td>Phone number: {{ userData ? userData.phoneNumber : '' }}</td>
           </tr>
           <tr>
-            <td>Address: International University</td>
-            <td><a href="#">Update Basic Information</a></td>
+            <Button
+              label="Update Basic Information"
+              @click="openDialog"
+              class="bg-orange-500 border-orange-500"
+            />
           </tr>
         </table>
       </div>
     </div>
-
-    <div class="in4_Contact">
-      <div class="topic">CONTACT INFO</div>
-      <div class="body">
-        <table>
-          <tr>
-            <td style="width: 500px">Email address: thanhtrollvn@gmail.com</td>
-            <td>Phone number: 0916736398</td>
-          </tr>
-          <tr>
-            <td>Status: Verified</td>
-            <td><a href="#">Change my phone number</a></td>
-          </tr>
-          <tr>
-            <td><a href="#">Update Basic Information</a></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    <Dialog
+      header="Update Information"
+      v-model:visible="showDialog"
+      modal
+      :style="{ width: '35rem' }"
+    >
+      <form @submit.prevent="handleUpdate">
+        <div class="field grid h-3rem">
+          <label for="username" class="col-12 mb-2 md:col-4 md:mb-0">Full Name:</label>
+          <InputText v-model="updatedUserData.fullname" id="fullname" class="col-12 md:col-8" />
+        </div>
+        <div class="field grid h-3rem">
+          <label for="dateOfBirth" class="col-12 mb-2 md:col-4 md:mb-0">Date Of Birth:</label>
+          <InputText
+            v-model="updatedUserData.dateOfBirth"
+            type="date"
+            id="dateOfBirth"
+            class="col-12 md:col-8"
+          />
+        </div>
+        <div class="field grid h-3rem">
+          <label for="email" class="col-12 mb-2 md:col-4 md:mb-0">Email address:</label>
+          <InputText
+            v-model="updatedUserData.email"
+            type="email"
+            id="email"
+            class="col-12 md:col-8"
+          />
+        </div>
+        <div class="field grid h-3rem">
+          <label for="phoneNumber" class="col-12 mb-2 md:col-4 md:mb-0">Phone number:</label>
+          <InputText
+            v-model="updatedUserData.phoneNumber"
+            type="text"
+            id="phoneNumber"
+            class="col-12 md:col-8"
+          />
+        </div>
+        <div class="flex justify-content-between">
+          <Button
+            label="Cancel"
+            class="p-button-text text-orange-500"
+            @click="showDialog = false"
+          />
+          <Button label="Save Changes" type="submit" class="bg-orange-500 border-orange-500" />
+        </div>
+      </form>
+    </Dialog>
 
     <div class="body" style="border-radius: 10px">
       <a href="#">Delete my account</a>
@@ -46,11 +78,63 @@
 </template>
 
 <script>
+import authMixin from '../utils/auth.js'
+import Dialog from 'primevue/dialog'
+import InputText from 'primevue/inputtext'
+import Button from 'primevue/button'
+import DataView from 'primevue/dataview'
 export default {
+  components: {
+    Dialog,
+    InputText,
+    Button,
+    DataView
+  },
+  mixins: [authMixin],
   props: {
     isDarkMode: {
       type: Boolean,
       required: true
+    }
+  },
+  data() {
+    return {
+      showDialog: false,
+      updatedUserData: {}
+    }
+  },
+  watch: {
+    userData: {
+      handler(newVal) {
+        console.log('User data changed:', newVal)
+      },
+      deep: true
+    }
+  },
+  methods: {
+    openDialog() {
+      this.updatedUserData = { ...this.userData }
+      this.showDialog = true
+    },
+    async handleUpdate() {
+      const userId = this.userData ? this.userData._id : null
+      if (userId) {
+        const finalUserData = {
+          username: this.updatedUserData.username || this.userData.username,
+          dateOfBirth: this.updatedUserData.dateOfBirth || this.userData.dateOfBirth,
+          email: this.updatedUserData.email || this.userData.email,
+          phoneNumber: this.updatedUserData.phoneNumber || this.userData.phoneNumber
+        }
+        const success = await this.updateUser(userId, finalUserData)
+        if (success) {
+          alert('User information updated successfully')
+          this.showDialog = false
+        } else {
+          alert('Failed to update user information')
+        }
+      } else {
+        alert('User ID is missing')
+      }
     }
   }
 }

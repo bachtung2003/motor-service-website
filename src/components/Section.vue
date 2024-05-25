@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-  </div>s
+  </div>
 
   <div v-if="isAboutPage()">
     <div v-if="isSection1()" class="section-wrapper">
