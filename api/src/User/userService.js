@@ -7,6 +7,7 @@ module.exports.createUserDBService = async (userDetails) => {
   try {
     const userModelData = new userModel({
       username: userDetails.username,
+      fullname: userDetails.fullname,
       email: userDetails.email,
       isAdmin: userDetails.isAdmin,
       phoneNumber: userDetails.phoneNumber,

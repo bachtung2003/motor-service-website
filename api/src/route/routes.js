@@ -26,7 +26,7 @@ router.get('/user/info', verifyToken, async (req, res) => {
   }
 })
 
-router.put('/user/:id', verifyTokenAndAuthentication, async (req, res) => {
+router.put('/user/:id', verifyToken, async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,

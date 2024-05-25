@@ -8,6 +8,10 @@ const UserSchema = mongoose.Schema(
       required: (true, 'Enter username'),
       unique: true
     },
+    fullname: {
+      type: String,
+      required: true
+    },
     email: {
       type: String,
       required: true
