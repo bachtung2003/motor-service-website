@@ -9,7 +9,7 @@
       />
       <a href="/" :class="{ 'dark-text': isDarkMode }">AHAMAY</a>
     </div>
-    <div class="container mt-4">
+    <div class="container mt-4" :class="[{ dark: isDarkMode }]">
       <TabMenu :model="navigation" :class="['navigation w-full', { 'dark-tabmenu': isDarkMode }]" />
       <Button
         v-if="accouuntVisible"
@@ -37,27 +37,34 @@
         v-model:visible="showDialog"
         modal
         header="Login"
-        :style="{ width: '30rem', backgroundColor: '#212121' }"
+        :style="{ width: '30rem' }"
         :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
         :dismissableMask="true"
       >
         <div class="flex align-items-center justify-content-center">
-          <img
-            :src="isDarkMode ? '/src/assets/img/logo-dark.png' : '/src/assets/img/logo.png'"
-            style="width: 90px"
-          />
+          <img src="/src/assets/img/logo.png" style="width: 90px" />
         </div>
         <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText id="username" class="flex h-2rem mt-3" autocomplete="off" />
+          <InputText
+            v-model="loginData.username"
+            id="username"
+            class="flex h-2rem mt-3"
+            autocomplete="off"
+          />
           <label :class="['left-auto text-lg', { 'dark-text': isDarkMode }]" for="username"
             >Username</label
           >
         </FloatLabel>
         <FloatLabel class="flex align-items-center justify-content-center gap-3 mb-3">
-          <InputText id="password" class="flex h-2rem mt-3" autocomplete="off" />
-          <label :class="['left-auto text-lg', { 'dark-text': isDarkMode }]" for="password"
-            >Password</label
-          >
+          <Password
+            v-model="loginData.password"
+            :feedback="false"
+            class="flex h-2rem mt-3"
+            toggleMask
+          />
+          <label :class="[' flex left-auto text-lg', { 'dark-text': isDarkMode }]" for="password">
+            Password
+          </label>
         </FloatLabel>
         <div class="flex justify-content-end gap-3 h-2rem">
           <Button
@@ -72,7 +79,7 @@
             class="w-4rem bg-orange-500 border-orange-500"
             type="button"
             label="Login"
-            @click="toggleLogin()"
+            @click="handleLogin()"
             :class="{ 'dark-button': isDarkMode }"
           ></Button>
         </div>
@@ -95,6 +102,9 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'
+import Password from 'primevue/password'
+import { loginUser } from '../utils/userService'
+
 import 'primevue/resources/themes/lara-light-indigo/theme.css'
 
 export default {
@@ -104,7 +114,8 @@ export default {
     Dialog,
     Button,
     InputText,
-    FloatLabel
+    FloatLabel,
+    Password
   },
   props: {
     isDarkMode: {
@@ -117,11 +128,9 @@ export default {
     accouuntVisible: false,
     loginvisible: true,
     showDialog: false,
-    password: {
-      show: false,
-      current: null,
-      new: null,
-      verify: null
+    loginData: {
+      username: null,
+      password: null
     },
     navigation: [
       { label: 'Home', url: '/' },
@@ -151,6 +160,23 @@ export default {
       this.showDialog = false
       this.loginvisible = !this.loginvisible
       this.accouuntVisible = !this.accouuntVisible
+    },
+    async handleLogin() {
+      try {
+        const loginData = {
+          username: this.loginData.username,
+          password: this.loginData.password
+        }
+        const response = await loginUser(loginData)
+        if (response) {
+          this.toggleLogin()
+        } else {
+          alert(response.data)
+        }
+      } catch (error) {
+        console.error('Error during login:', error)
+        alert('An error occurred during login.')
+      }
     }
   }
 }
@@ -257,7 +283,7 @@ export default {
   height: 76px;
 }
 
-.p-dialog .p-dialog-content.dark-toolbar {
+.p-dialog .p-dialog-content.dark- {
   background-color: #212121;
 }
 
@@ -350,5 +376,9 @@ export default {
 ::v-deep(.p-tabmenu) .p-tabmenuitem .p-menuitem-link {
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+::v-deep(.p-icon-field) .p-input-icon {
+  top: 30%;
 }
 </style>
