@@ -121,12 +121,22 @@
                     class="bg-white text-blue-500 border-orange-500 w-3"
                     @click="submit"
                   ></Button>
-                  <Button
-                    type="button"
-                    label="Add to cart"
-                    class="bg-orange-500 text-white border-orange-500 w-3"
-                    @click="addToCart"
-                  ></Button>
+                  <button class="CartBtn" @click="addToCart()">
+                    <span class="IconContainer">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 576 512"
+                        fill="rgb(17, 17, 17)"
+                        class="cart"
+                      >
+                        <path
+                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
+                        ></path>
+                      </svg>
+                    </span>
+                    <p class="text">Add to Cart</p>
+                  </button>
                 </div>
               </template>
             </Dialog>
@@ -153,9 +163,7 @@ import Dropdown from 'primevue/dropdown'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import servicesData from '@/services/data'
-import EventBus from '@/utils/Eventbus'
 import Toast from 'primevue/toast'
-import axios from 'axios'
 import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
   components: {
@@ -191,8 +199,8 @@ export default {
       lineItems: [],
       publishableKey:
         'pk_test_51PIpED01HTEsX8gXhs9HBmHQl16bAZYyvArNfoLvILs5DO7IoIC6uqG7uqiHMkjCwu5EZF5VYu9JSvkBJoALW0kw00qNCZMn76',
-      successUrl: '/',
-      cancelUrl: '/services'
+      successUrl: 'https://localhost:5173',
+      cancelUrl: 'http://localhost:5173/services'
     }
   },
   mounted() {
@@ -222,22 +230,63 @@ export default {
       }
     }
   },
-  inject: ['isDarkMode', 'toggleTheme'],
   methods: {
     showDialog(service) {
       this.selectedService = service
       this.selectedBrand = null
       this.visible = true
     },
-    addToCart() {
-      if (this.selectedBrand) {
-        const productToAdd = {
-          ...this.selectedService,
-          selectedBrand: this.selectedBrand
+    async addToCart() {
+      if (!this.selectedBrand) {
+        console.error('No brand selected')
+        this.$refs.toast.add({
+          severity: 'warn',
+          summary: 'Please select a brand',
+          life: 1200
+        })
+        return
+      }
+
+      const productToAdd = {
+        ...this.selectedService,
+        selectedBrand: this.selectedBrand
+      }
+
+      try {
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || []
+
+        // Check for duplicates
+        const exists = cartItems.some(
+          (item) =>
+            item.id === productToAdd.id &&
+            item.selectedBrand.brand === productToAdd.selectedBrand.brand
+        )
+
+        if (exists) {
+          this.$refs.toast.add({
+            severity: 'info',
+            summary: 'Item already in cart',
+            life: 1200
+          })
+        } else {
+          cartItems.push(productToAdd)
+          localStorage.setItem('cart', JSON.stringify(cartItems))
+          this.$refs.toast.add({
+            severity: 'success',
+            summary: 'Item added to cart',
+            life: 1200
+          })
         }
-        EventBus.emit('add-to-cart', productToAdd)
+
         this.visible = false
-        console.log(productToAdd)
+        console.log('Cart items:', cartItems)
+      } catch (error) {
+        console.error('Error adding to cart:', error)
+        this.$refs.toast.add({
+          severity: 'error',
+          summary: 'Error adding to cart',
+          life: 1200
+        })
       }
     },
     navigateRoute() {
@@ -260,7 +309,7 @@ export default {
           quantity: 1
         }
       ]
-      console.log(this.$refs.checkoutRef)
+
       try {
         const result = await this.$refs.checkoutRef.redirectToCheckout({
           lineItems: this.lineItems,
@@ -269,12 +318,8 @@ export default {
           cancelUrl: this.cancelUrl
         })
         console.log(result)
-
-        if (result.error) {
-          console.error('Error during checkout:', result.error)
-        }
       } catch (error) {
-        console.error('Error during checkout:', error)
+        console.log('Error during checkout:', error)
       }
     }
   }
@@ -365,6 +410,68 @@ export default {
 
 .section2-wrapper div .about2-button span {
   color: #fe7a36;
+}
+
+.CartBtn {
+  width: 25%;
+  border-radius: 4px;
+  border: none;
+  background-color: #fe7a36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  overflow: hidden;
+  position: relative;
+}
+
+.IconContainer {
+  position: absolute;
+  left: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.5s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(17, 17, 17);
+  z-index: 1;
+  transition-duration: 0.5s;
+  font-size: 1.04em;
+  font-weight: 600;
+}
+
+.CartBtn:hover .IconContainer {
+  transform: translateX(58px);
+  border-radius: 40px;
+  transition-duration: 0.5s;
+}
+
+.CartBtn:hover .text {
+  transform: translate(10px, 0px);
+  transition-duration: 0.5s;
+}
+
+.CartBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.5s;
 }
 
 .custom-placeholder .p-dropdown-label:not(.p-placeholder-visible) {
