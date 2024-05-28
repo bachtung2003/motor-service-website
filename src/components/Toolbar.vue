@@ -720,11 +720,11 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 10px;
-  z-index: 1000; /* Ensure the dropdown is above other content */
+  z-index: 1000; 
 }
 
 .data-view-container {
-  max-height: 200px; /* Adjust max-height as needed */
+  max-height: 200px;
   overflow-y: auto;
 }
 

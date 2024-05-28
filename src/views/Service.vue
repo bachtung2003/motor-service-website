@@ -255,7 +255,6 @@ export default {
       try {
         let cartItems = JSON.parse(localStorage.getItem('cart')) || []
 
-        // Check for duplicates
         const exists = cartItems.some(
           (item) =>
             item.id === productToAdd.id &&
