@@ -20,6 +20,7 @@
             height="30.52"
             width="24.38"
             xmlns="http://www.w3.org/2000/svg"
+            :class="{dark: isDarkMode}"
           >
             <title>icon-cart</title>
             <path
@@ -691,6 +692,11 @@ export default {
 }
 
 .icon-cart path {
+  fill: dark;
+  transition: 0.2s linear;
+}
+
+.icon-cart.dark path {
   fill: white;
   transition: 0.2s linear;
 }
