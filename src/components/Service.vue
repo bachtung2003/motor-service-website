@@ -17,8 +17,7 @@
           Tire and wheel
         </h2>
         <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'black' : 'initial' }">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.Loremut labore et dolore magna aliqua.Lorem
+          We provide comprehensive tire and wheel services, including installation, balancing, alignment, and repair to ensure optimal safety and performance.
         </p>
         <div class="flex justify-content-center align-items-center mt-4">
           <p
@@ -42,11 +41,10 @@
           class="font-normal text-4xl text-black-alpha-90 flex justify-content-center font-semibold pt-2"
           :class="[{ dark: isDarkMode }]"
         >
-          Tire and wheel
+        Electricity and Engine
         </h2>
         <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'black' : 'initial' }">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.Loremut labore et dolore magna aliqua.Lorem
+          Our skilled technicians offer expert diagnostics and repair for electrical systems and machine engines, ensuring your vehicle operates at peak efficiency.
         </p>
         <div class="flex justify-content-center align-items-center mt-4">
           <p
@@ -69,11 +67,10 @@
           class="font-normal text-4xl text-black-alpha-90 flex justify-content-center font-semibold pt-2"
           :class="[{ dark: isDarkMode }]"
         >
-          Tire and wheel
+        Rack Housing
         </h2>
         <p class="text-center px-3 pt-2" :style="{ color: isDarkMode ? 'black' : 'initial' }">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.Loremut labore et dolore magna aliqua.Lorem
+          We specialize in rack housing maintenance and repairs, ensuring precise steering and handling for a smoother, safer driving experience.
         </p>
         <div class="flex justify-content-center align-items-center mt-4">
           <p

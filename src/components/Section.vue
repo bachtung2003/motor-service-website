@@ -8,11 +8,7 @@
         <div
           class="about-content absolute font-light flex justify-content-center text-white text-base text-left"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
+        We offer expert car repair and maintenance services to keep your vehicle running smoothly and efficiently. Our certified technicians provide comprehensive diagnostics, routine maintenance, and repairs using state-of-the-art equipment and high-quality parts. From oil changes and brake inspections to engine repairs and transmission services, we ensure your car is in top condition, enhancing its performance and extending its lifespan. Trust us for reliable, timely, and cost-effective automotive care.
         </div>
         <Button
           class="about-button flex relative align-items-center text-white"
